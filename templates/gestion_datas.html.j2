@@ -1,0 +1,72 @@
+{% extends "base.html.j2" %}
+
+{% block content %}
+<form id="form-create-datas">
+  <div class="section1">
+    <h3>Section 1 : Les datas</h3>
+    <label for="">Format des Données :</label>
+    <select name="DATA_FORMAT">
+      <option selected>Selectionnez</option>
+      <option value="KERAS">KERAS</option>
+      <option value="VOC">VOC</option>
+      <option value="GEN">GEN</option>
+    </select>
+    <br><br>
+    <label for="">Generation des Données :</label>
+    <select class="" name="DATA_FEED">
+      <option selected>Selectionnez</option>
+      <option value="GENERATOR">GENERATOR</option>
+      <option value="IMG">IMG</option>
+      <option value="KERAS_DATASET">KERAS_DATASET</option>
+    </select>
+    <br><br>
+    <label for="">Type de Données</label>
+    <select class="" name="DATA_TYPE">
+      <option selected>Selectionnez</option>
+      <option value="IMG">IMG</option>
+    </select>
+    <div id="section_reshape" hidden>
+      <br><br>
+      <label for="">Formatage des Données</label>
+      <input type="checkbox" name="RESHAPE" checked="true">
+    </div>
+    <div id="section_format" hidden>
+      <br><br>
+      <label id="label_format">Format du Label</label>
+      <select class="" name="LABEL_FORMAT">
+        <option selected>Selectionnez</option>
+        <option value="VIA_JSON">VIA_JSON</option>
+      </select>
+    </div>
+    <br><br>
+    <label for="">Fichier d'Annontation</label>
+    <input type="text" name="LABEL_NAME">
+    <br><br>
+  </div>
+  <div id="section_classes">
+    <label for="">Classes :</label>
+    <input type="text" name="CLASSES">
+  </div>
+  <div id="section2" hidden>
+    <h3>Section 2 : Generateur</h3>
+    <label for="">Normalisation</label>:
+    <input type="checkbox" name="RESCALE">
+    <br><br>
+    <label for="">Taille des Images :</label>
+    <input type="number" name="y1" style="width:50px">
+    <strong>x</strong>
+    <input type="number" name="y2" style="width:50px">
+    <br><br>
+    <label for="">Taille du batch:</label>
+    <input type="number" name="BATCH_SIZE" min="1" value="1">
+    <br><br>
+    <label for="">Format du label :</label>
+    <select name="CLASS_MODE" id="">
+      <option value="categorical">Categorical</option>
+    </select>
+  </div>
+</form>
+{% endblock %}
+{% block script %}
+<script src="{{url_for('static', filename='js/script_datas.js')}}" charset="utf-8"></script>
+{% endblock %}

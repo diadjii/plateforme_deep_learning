@@ -3,18 +3,23 @@
   <head>
     <meta charset="utf-8">
     <title>Plateforme Deep Learning</title>
+    <script src="{{url_for('static', filename='js/jquery.min.js')}}" charset="utf-8"></script>
   </head>
   <body>
     <div id="">
       <div id="header">
-        <h1>Plateforme Deep Learning</h1>
+        <h1>Gestion des Datas</h1>
       </div>
       <div id="content">
-        
+        {% block content %}
+
+        {% endblock %}
       </div>
       <div id="footer">
 
       </div>
+      {% block script %}
+      {% endblock %}
     </div>
   </body>
 </html>
