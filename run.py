@@ -21,29 +21,8 @@ def accueil():
 def generate_config():
     if request.method =="POST":
 
-        datas = request.form
-
-        config_params = {}
-
-        config_params['configuration'] = {}
-        
-        config_params['configuration']['DATAS'] = {
-            "DATA_FORMAT" : datas['DATA_FORMAT'],
-        	"DATA_FEED" : datas['DATA_FEED'],
-        	"DATA_PATH" : datas['DATA_PATH'],
-        	"DATA_TYPE" : datas['DATA_TYPE'],
-        	"RESHAPE" : datas['RESHAPE'],
-            "CLASSES":datas['CLASSES']
-        }
-        
-        if datas['generator']:
-            config_params['configuration']['DATAS']["RESCALE"] = datas['RESCALE']
-            config_params['configuration']['DATAS']['TARGET_SIZE'] = datas['TARGET_SIZE']
-            config_params['configuration']['DATAS']['BATCH_SIZE'] = datas['BATCH_SIZE']
-            config_params['configuration']['DATAS']['CLASS_MODE'] = datas['CLASS_MODE']
-            
         response = "true"
-        if generate_config_file(config_params) != True:
+        if generate_config_file(request.form) != True:
           response = "false"
         
         return response

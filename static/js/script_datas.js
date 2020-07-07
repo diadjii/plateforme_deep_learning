@@ -73,6 +73,24 @@ $("#form-create-datas").submit(e => {
   })
 })
 
+$("#form_load_datas").submit(e => {
+  e.preventDefault();
+
+  file = $("#file")[0].files[0]
+  reader = new FileReader();
+  configurations = {};
+
+  reader.onload = e => {
+    let lines = e.target.result;
+    configurations = JSON.parse(lines);
+  };
+  reader.readAsText(file)
+
+  reader.onloadend = e => {
+
+    setDatasToForm(configurations.configuration.DATAS)
+  }
+})
 function generateConfig() {
   let dataFormat = fieldDataFormat.val();
   let dataFeed = fieldDataFeed.val();
@@ -127,4 +145,34 @@ function disableRequiredFieldsSecyion2() {
   fieldImgSizeY_2.attr('required', false);
   fieldBatchSize.attr('required', false);
   fieldRescale.attr('required', false);
+}
+
+function setDatasToForm(datas) {
+  fieldDataFormat.val(datas.DATA_FORMAT);
+  fieldDataFormat.trigger('change');
+
+  fieldDataFeed.val(datas.DATA_FEED);
+  fieldDataFeed.trigger('change');
+
+  fieldDataType.val(datas.DATA_TYPE);
+  fieldDataType.trigger('change');
+
+  fieldClasses.val(datas.CLASSES);
+
+  if (datas.DATA_FORMAT == "VOC") {
+    size = datas.TARGET_SIZE.split('x');
+    y1 = size[0];
+    y2 = size[1];
+
+    fieldReshape.attr("checked", datas.RESHAPE == 'true' ? true : false);
+    fieldRescale.attr("checked", datas.RESCALE == 'true' ? true : false);
+    fieldBatchSize.val(datas.BATCH_SIZE);
+
+
+    fieldImgSizeY_1.val(y1);
+    fieldImgSizeY_2.val(y2);
+    console.log(fieldReshape);
+  }
+
+  console.log(datas)
 }
