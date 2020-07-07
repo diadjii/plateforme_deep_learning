@@ -5,24 +5,32 @@
   <div class="section1">
     <h3>Section 1 : Les datas</h3>
     <label for="">Format des Données :</label>
-    <select name="DATA_FORMAT">
-      <option selected>Selectionnez</option>
+    <select name="DATA_FORMAT" required>
+      <option value="">Selectionnez</option>
       <option value="KERAS">KERAS</option>
       <option value="VOC">VOC</option>
       <option value="GEN">GEN</option>
-    </select>
+    </select><br><br>
+    <div>
+      <label for="">Dossier Racine :</label>
+      <input type="file" name="DATA_PATH" id="field_path_input">
+      <select id="field_path_select" name="DATA_PATH" hidden>
+        <option value="">Selectionnez</option>
+        <option value="MNIST">MNIST</option>
+      </select>
+    </div>
     <br><br>
     <label for="">Generation des Données :</label>
-    <select class="" name="DATA_FEED">
-      <option selected>Selectionnez</option>
+    <select class="" name="DATA_FEED" required>
+      <option value="">Selectionnez</option>
       <option value="GENERATOR">GENERATOR</option>
       <option value="IMG">IMG</option>
       <option value="KERAS_DATASET">KERAS_DATASET</option>
     </select>
     <br><br>
     <label for="">Type de Données</label>
-    <select class="" name="DATA_TYPE">
-      <option selected>Selectionnez</option>
+    <select name="DATA_TYPE" required>
+      <option value="">Selectionnez</option>
       <option value="IMG">IMG</option>
     </select>
     <div id="section_reshape" hidden>
@@ -30,22 +38,22 @@
       <label for="">Formatage des Données</label>
       <input type="checkbox" name="RESHAPE" checked="true">
     </div>
+    <br><br>
     <div id="section_format" hidden>
-      <br><br>
       <label id="label_format">Format du Label</label>
-      <select class="" name="LABEL_FORMAT">
-        <option selected>Selectionnez</option>
+      <select name="LABEL_FORMAT">
+        <option value="">Selectionnez</option>
         <option value="VIA_JSON">VIA_JSON</option>
       </select>
+      <br><br>
+      <label for="">Fichier d'Annontation</label>
+      <input type="file" name="LABEL_NAME">
+      <br><br>
     </div>
-    <br><br>
-    <label for="">Fichier d'Annontation</label>
-    <input type="text" name="LABEL_NAME">
-    <br><br>
   </div>
   <div id="section_classes">
     <label for="">Classes :</label>
-    <input type="text" name="CLASSES">
+    <input type="text" name="CLASSES" value="background" required>
   </div>
   <div id="section2" hidden>
     <h3>Section 2 : Generateur</h3>
@@ -64,7 +72,12 @@
     <select name="CLASS_MODE" id="">
       <option value="categorical">Categorical</option>
     </select>
-  </div>
+  </div><br><br>
+  <input type="submit" name="" value="Enregistrer">
+  <br><br>
+  <a href="/config/generate" id="btn-download"
+  style="background-color:mediumseagreen;color:#fff;padding:5px;border-radius:8px; border:1px solid #fff;" hidden>Telecharger
+  </a>
 </form>
 {% endblock %}
 {% block script %}

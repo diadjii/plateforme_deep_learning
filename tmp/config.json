@@ -1,0 +1,16 @@
+{
+  "configuration": {
+    "DATAS": {
+      "DATA_FORMAT": "VOC",
+      "DATA_FEED": "KERAS_DATASET",
+      "DATA_PATH": "MNIST",
+      "DATA_TYPE": "IMG",
+      "RESHAPE": "false",
+      "CLASSES": "background",
+      "RESCALE": "true",
+      "TARGET_SIZE": "3x3",
+      "BATCH_SIZE": "1",
+      "CLASS_MODE": "categorical"
+    }
+  }
+}
