@@ -24,10 +24,10 @@ def generate_config():
         response = "true"
         if generate_config_file(request.form) != True:
           response = "false"
-        
+
         return response
     else:
-        path =  path = "tmp/config.json"
+        path = "tmp/config.json"
         return send_file(path, as_attachment=True)
 
 if __name__ == '__main__':
