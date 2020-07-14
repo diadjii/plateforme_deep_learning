@@ -2,87 +2,123 @@
 
 {% block content %}
 <form id="form_load_datas">
+ <div class="field">
+  <div class="ui label">
   <label for="">Charger des données : </label>
-  <input type="file" id="file" required><br>
-  <button type="submit">Charger</button>
+  </div>
+  <div class="ui label">
+  <input type="file" id="file" required>
+  </div>
+  <button type="submit" class="ui primary button">Charger</button>
+  </div><br>
 </form>
 <form id="form-create-datas">
   <div class="section1">
     <h3>Section 1 : Les datas</h3>
+
+    <div class="field">
+    <div class="ui label">
     <label for="">Format des Données :</label>
-    <select name="DATA_FORMAT" required>
+    </div>
+    <select name="DATA_FORMAT" class="ui fluid dropdown" required>
       <option value="">Selectionnez</option>
       <option value="KERAS">KERAS</option>
       <option value="VOC">VOC</option>
       <option value="GEN">GEN</option>
-    </select><br><br>
-    <div>
+    </select>
+    </div><br>
+
+    <div class="field">
+      <div class="ui label">
       <label for="">Dossier Racine :</label>
+      </div>
+      <div class="ui label">
       <input type="file" name="DATA_PATH" id="field_path_input">
-      <select id="field_path_select" name="DATA_PATH" hidden>
+      </div>
+      <select id="field_path_select" name="DATA_PATH" class="ui fluid dropdown" hidden>
         <option value="">Selectionnez</option>
         <option value="MNIST">MNIST</option>
       </select>
-    </div>
-    <br><br>
-    <label for="">Generation des Données :</label>
-    <select class="" name="DATA_FEED" required>
+    </div><br>
+
+    <div class="field">
+    <div class="ui label">
+    <label for="">Generation des Données :</label></div>
+    <select class="ui fluid dropdown" name="DATA_FEED" required>
       <option value="">Selectionnez</option>
       <option value="GENERATOR">GENERATOR</option>
       <option value="IMG">IMG</option>
       <option value="KERAS_DATASET">KERAS_DATASET</option>
     </select>
-    <br><br>
-    <label for="">Type de Données</label>
-    <select name="DATA_TYPE" required>
+    </div><br>
+    
+    <div class="field">
+    <div class="ui label">
+    <label for="">Type de Données</label></div>
+    <select name="DATA_TYPE" class="ui fluid dropdown" required>
       <option value="">Selectionnez</option>
       <option value="IMG">IMG</option>
     </select>
-    <div id="section_reshape" hidden>
-      <br><br>
-      <label for="">Formatage des Données</label>
+    <div class="field" id="section_reshape" hidden>
+      <div class="ui label">
+      <label for="">Formatage des Données</label></div>
+      <div class="ui input">
       <input type="checkbox" name="RESHAPE" checked="true">
     </div>
-    <br><br>
-    <div id="section_format" hidden>
-      <label id="label_format">Format du Label</label>
-      <select name="LABEL_FORMAT">
+    </div><br>
+
+    <div id="section_format" class="field" hidden>
+    <div class="ui label">
+      <label id="label_format">Format du Label</label></div>
+      <select name="LABEL_FORMAT" class="ui fluid dropdown">
         <option value="">Selectionnez</option>
         <option value="VIA_JSON">VIA_JSON</option>
       </select>
-      <br><br>
-      <label for="">Fichier d'Annontation</label>
-      <input type="file" name="LABEL_NAME">
-      <br><br>
+      <br>
+      <div class="ui label">
+      <label for="">Fichier d'Annontation</label></div>
+      <div class="ui label">
+      <input type="file" name="LABEL_NAME"></div>
     </div>
-  </div>
-  <div id="section_classes">
-    <label for="">Classes :</label>
-    <input type="text" name="CLASSES" value="background" required>
-  </div>
-  <div id="section2" hidden>
+  </div><br>
+
+  <div id="section_classes" class="field">
+    <div class="ui label">
+    <label for="">Classes :</label></div>
+    <div class="ui input">
+    <input type="text" name="CLASSES" value="background" required></div>
+  </div><br>
+
+  <div id="section2" class="field" hidden>
     <h3>Section 2 : Generateur</h3>
+    
     <label for="">Normalisation</label>:
+   
     <input type="checkbox" name="RESCALE">
     <br><br>
-    <label for="">Taille des Images :</label>
-    <input type="number" name="y1" style="width:50px">
+    <div class="ui label">
+    <label for="">Taille des Images :</label></div>
+    <div class="ui input">
+    <input type="number" name="y1" style="width:100px"></div>
     <strong>x</strong>
-    <input type="number" name="y2" style="width:50px">
+    <div class="ui input">
+    <input type="number" name="y2" style="width:100px"></div>
     <br><br>
-    <label for="">Taille du batch:</label>
-    <input type="number" name="BATCH_SIZE" min="1" value="1">
+    <div class="ui label">
+    <label for="">Taille du batch:</label></div>
+    <div class="ui input">
+    <input type="number" name="BATCH_SIZE" min="1" value="1"></div>
     <br><br>
-    <label for="">Format du label :</label>
-    <select name="CLASS_MODE" id="">
+    <div class="ui label">
+    <label for="">Format du label :</label></div>
+    <select name="CLASS_MODE" id="" class="ui fluid dropdown">
       <option value="categorical">Categorical</option>
     </select>
-  </div><br><br>
-  <input type="submit" name="" value="Enregistrer">
+  </div><br>
+  <div class="ui input">
+  <input type="submit" name="" class="ui positive button" value="Enregistrer"></div>
   <br><br>
-  <a href="/config/generate" id="btn-download"
-    style="background-color:mediumseagreen;color:#fff;padding:5px;border-radius:8px; border:1px solid #fff;"
-    hidden>Telecharger
+  <a href="/config/generate" id="btn-download" lass="ui button" hidden>Telecharger
   </a>
 </form>
 {% endblock %}
