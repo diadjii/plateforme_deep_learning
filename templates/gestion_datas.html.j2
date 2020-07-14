@@ -18,7 +18,7 @@
     </select><br><br>
     <div>
       <label for="">Dossier Racine :</label>
-      <input type="file" name="DATA_PATH" id="field_path_input" multiple directory webkitdirectory mozdirectory>
+      <input type="file" name="DATA_PATH" id="field_path_input" multiple directory webkitdirectory allowdirs>
       <select id="field_path_select" name="DATA_PATH" hidden>
         <option value="">Selectionnez</option>
         <option value="MNIST">MNIST</option>
@@ -65,10 +65,11 @@
     <label for="">Normalisation</label>:
     <input type="checkbox" name="RESCALE">
     <br><br>
-    <label for="">Taille des Images :</label>
-    <input type="number" name="y1" style="width:50px">
+    <label for="">Taille des Images en sortie
+      :</label>
+    <input type="number" name="imgSizeSortiey1" style="width:50px">
     <strong>x</strong>
-    <input type="number" name="y2" style="width:50px">
+    <input type="number" name="imgSizeSortiey2" style="width:50px">
     <br><br>
     <label for="">Taille du batch:</label>
     <input type="number" name="BATCH_SIZE" min="1" value="1">
@@ -78,6 +79,63 @@
       <option value="categorical">Categorical</option>
     </select>
   </div><br><br>
+  <div id="section3">
+    <h3>Section 3 : Modele</h3>
+    <label for="">Type de Modele :</label>
+    <select name="MODEL_TYPE" id="">
+      <option value="">Selectionnez un type </option>
+      <option value="DENSE_MNIST">DENSE_MNIST</option>
+      <option value="RCNN">RCNN</option>
+      <option value="SSD300">SSD300</option>
+      <option value="CUSTOM">CUSTOM</option>
+    </select><br><br>
+    <label for="">Chemin vers le poids du Modele :</label>
+    <input type="text" name="WEIGHTS_PATH"><br><br>
+    <label for="">Tâche :</label>
+    <select name="TASK" id="">
+      <option value="">Selectionnez une Tâche</option>
+      <option value="TRAIN">Entrainement</option>
+      <option value="INFERENCE">Inférence</option>
+      <option value="FIND_LR">Recherche de learning rate</option>
+      <option value="CHECK_ANNONTATIONS">Vérification des Annontations</option>
+    </select><br><br>
+    <div id="section_logs" hidden>
+      <label for="">Chemin vers le dossier log :</label>
+      <input type="text" name="LOGS_PATH">
+      <br><br>
+    </div>
+    <label for="">Taille des Images en Entrées :</label>
+    <input type="text" name="imgSizeEntreeY1" style="width:50px">
+    <strong>x</strong>
+    <input type="text" name="imgSizeEntreeY2" style="width:50px">
+    <br><br>
+    <label for="">Taille du Batch :</label>
+    <input type="number" name="BATCH_SIZE">
+    <br><br>
+  </div>
+  <div id="section_compilation">
+    <label for="">Métriques :</label>
+    <select name="METRICS">
+      <option value="">Selectionnez</option>
+      <option value="ACC">Précision</option>
+      <option value="LOSS">Perte</option>
+    </select>
+    <br><br>
+    <label for="">Fonction de Perte</label>:
+    <select name="" id=""></select>
+    <select name="" id=""></select>
+    <select name="" id=""></select>
+    <select name="" id=""></select>
+    <select name="" id=""></select>
+    <select name="" id=""></select>
+    <select name="" id=""></select>
+    <select name="" id=""></select>
+    <select name="" id=""></select>
+    <select name="" id=""></select>
+    <select name="" id=""></select>
+    <select name="" id=""></select>
+  </div>
+  
   <input type="submit" name="" value="Enregistrer">
   <br><br>
   <a href="/config/generate" id="btn-download"
