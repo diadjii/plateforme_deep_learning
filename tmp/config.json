@@ -5,11 +5,11 @@
       "DATA_FEED": "KERAS_DATASET",
       "DATA_PATH": "MNIST",
       "DATA_TYPE": "IMG",
-      "RESHAPE": "true",
+      "RESHAPE": "false",
       "CLASSES": "background",
       "RESCALE": "true",
-      "TARGET_SIZE": "30x30",
-      "BATCH_SIZE": "1",
+      "TARGET_SIZE": "100x100",
+      "BATCH_SIZE": "5",
       "CLASS_MODE": "categorical"
     }
   }

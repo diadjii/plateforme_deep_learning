@@ -73,24 +73,31 @@ $("#form-create-datas").submit(e => {
   })
 })
 
+//chargement des données du fichier de configuration dans le formulaire
 $("#form_load_datas").submit(e => {
   e.preventDefault();
 
-  file = $("#file")[0].files[0]
-  reader = new FileReader();
-  configurations = {};
+  var file = $("#file")[0].files[0]
+  var reader = new FileReader();
+  var configurations = {};
 
+  //evenement declenché si toutefois le fichier chargé
   reader.onload = e => {
     let lines = e.target.result;
+    //recuperation du contenu du fichier de configuration
     configurations = JSON.parse(lines);
   };
+
+  //lecture des lignes
   reader.readAsText(file)
 
   reader.onloadend = e => {
-
+    /*Appel de la fonction qui recupere les données du
+    fichier de config et le rempli le formulaire avec ces données*/
     setDatasToForm(configurations.configuration.DATAS)
   }
 })
+
 function generateConfig() {
   let dataFormat = fieldDataFormat.val();
   let dataFeed = fieldDataFeed.val();
@@ -106,7 +113,7 @@ function generateConfig() {
     dataPath = fieldInputDataPath.val();
   }
 
-  configurations = {
+  var configurations = {
     "DATA_FORMAT": dataFormat,
     "DATA_FEED": dataFeed,
     "DATA_PATH": dataPath,
@@ -147,6 +154,7 @@ function disableRequiredFieldsSecyion2() {
   fieldRescale.attr('required', false);
 }
 
+//fonction qui remplit le formulaire avec les données du fichier de configuration
 function setDatasToForm(datas) {
   fieldDataFormat.val(datas.DATA_FORMAT);
   fieldDataFormat.trigger('change');
@@ -160,9 +168,9 @@ function setDatasToForm(datas) {
   fieldClasses.val(datas.CLASSES);
 
   if (datas.DATA_FORMAT == "VOC") {
-    size = datas.TARGET_SIZE.split('x');
-    y1 = size[0];
-    y2 = size[1];
+    let size = datas.TARGET_SIZE.split('x');
+    let y1 = size[0];
+    let y2 = size[1];
 
     fieldReshape.attr("checked", datas.RESHAPE == 'true' ? true : false);
     fieldRescale.attr("checked", datas.RESCALE == 'true' ? true : false);
@@ -171,8 +179,6 @@ function setDatasToForm(datas) {
 
     fieldImgSizeY_1.val(y1);
     fieldImgSizeY_2.val(y2);
-    console.log(fieldReshape);
   }
 
-  console.log(datas)
 }
