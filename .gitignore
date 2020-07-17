@@ -1,1 +1,7 @@
+<<<<<<< HEAD
 *.pyc
+=======
+#environnement virtual ignore
+venv
+.pyc
+>>>>>>> fab78b5d9a2b05e7739d97a8234ff69341ef7bb9
