@@ -1,24 +1,47 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
   <meta charset="utf-8">
   <title>Plateforme Deep Learning</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
+    integrity="sha256-9mbkOfVho3ZPXfM7W8sV2SndrGDuh7wuyLjtsWeTI1Q=" crossorigin="anonymous" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+    integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
   <script src="{{url_for('static', filename='js/jquery.min.js')}}" charset="utf-8"></script>
 </head>
+
 <body>
-  <div class="container">
-    <div id="header">
-      <h1>Gestion des Datas</h1>
+  <div class="ui sidebar vertical menu sidebar-menu" id="sidebar">
+    <h3 class="item">
+      <i class="icon tachometer alternate"></i>
+      Datas
+    </h3>
+  </div>
+  <nav class="ui top fixed menu">
+      <a href="#" class="header item">
+        Plateforme Deep Learning
+      </a>
+  </nav>
+  <div class="pusher">
+    <div class="main-content">
+      <div class="ui grid container">
+        {% block content %}
+        {% endblock %}
+        Telecharger le fichier de configuration <a href="{{url_for('download_file')}}">en cliquant ici</a>
+      </div>
     </div>
-    <div id="content">
-      {% block content %}
-      {% endblock %}
-      Telecharger le fichier de configuration <a href="{{url_for('download_file')}}">en cliquant ici</a>
-    </div>
-    <div id="footer">
-    </div>
-    {% block script %}
-    {% endblock %}
+  </div>
+  <div id="footer">
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"
+    integrity="sha256-t8GepnyPmw9t+foMh3mKNvcorqNHamSKtKRxxpUEgFI=" crossorigin="anonymous"></script>
+  {% block script %}
+
+  {% endblock %}
   </div>
 </body>
+
 </html>

@@ -1,149 +1,161 @@
 {% extends "base.html.j2" %}
 
 {% block content %}
-<form id="form_load_datas">
-  <label for="">Charger des données : </label>
-  <input type="file" id="file" required><br>
-  <button type="submit">Charger</button>
-</form>
-<form id="form-create-datas">
-  <div class="section1">
-    <h3>Section 1 : Les datas</h3>
-    <label for="">Format des Données :</label>
-    <select name="DATA_FORMAT" required>
-      <option value="">Selectionnez</option>
-      <option value="KERAS">KERAS</option>
-      <option value="VOC">VOC</option>
-      <option value="GEN">GEN</option>
-    </select><br><br>
-    <div>
-      <label for="">Dossier Racine :</label>
-      <input type="file" name="DATA_PATH" id="field_path_input" multiple directory webkitdirectory allowdirs>
-      <select id="field_path_select" name="DATA_PATH" hidden>
-        <option value="">Selectionnez</option>
-        <option value="MNIST">MNIST</option>
-      </select>
-    </div>
-    <br><br>
-    <label for="">Generation des Données :</label>
-    <select class="" name="DATA_FEED" required>
-      <option value="">Selectionnez</option>
-      <option value="GENERATOR">GENERATOR</option>
-      <option value="IMG">IMG</option>
-      <option value="KERAS_DATASET">KERAS_DATASET</option>
-    </select>
-    <br><br>
-    <label for="">Type de Données</label>
-    <select name="DATA_TYPE" required>
-      <option value="">Selectionnez</option>
-      <option value="IMG">IMG</option>
-    </select>
-    <div id="section_reshape" hidden>
+<div class="ui row">
+  <h2 class="header five wide column">Gestion des Datas</h2>
+</div>
+<div class="ui row ">
+  <div class="large">
+    <form id="form_load_datas">
+      <label for="">Charger des données : </label>
+      <input type="file" id="file" required><br>
+      <button class="ui button black" type="submit">Charger</button>
+    </form>
+    <form id="form-create-datas">
+      <div class="section1">
+        <h3>Section 1 : Les datas</h3>
+        <label for="">Format des Données :</label>
+        <select class="ui fluid dropdown" name="DATA_FORMAT" required>
+          <option value="">Selectionnez</option>
+          <option value="KERAS">KERAS</option>
+          <option value="VOC">VOC</option>
+          <option value="GEN">GEN</option>
+        </select><br><br>
+        <div>
+          <label for="">Dossier Racine :</label>
+          <input type="file" name="DATA_PATH" id="field_path_input" multiple directory webkitdirectory allowdirs>
+          <select id="field_path_select" name="DATA_PATH" hidden>
+            <option value="">Selectionnez</option>
+            <option value="MNIST">MNIST</option>
+          </select>
+        </div>
+        <br><br>
+        <label for="">Generation des Données :</label>
+        <select class="ui fluid dropdown" name="DATA_FEED" required>
+          <option value="">Selectionnez</option>
+          <option value="GENERATOR">GENERATOR</option>
+          <option value="IMG">IMG</option>
+          <option value="KERAS_DATASET">KERAS_DATASET</option>
+        </select>
+        <br><br>
+        <label for="">Type de Données</label>
+        <select class="ui fluid dropdown" name="DATA_TYPE" required>
+          <option value="">Selectionnez</option>
+          <option value="IMG">IMG</option>
+        </select>
+        <div id="section_reshape" hidden>
+          <br><br>
+          <label for="">Formatage des Données</label>
+          <input type="checkbox" name="RESHAPE" checked="true">
+        </div>
+        <br><br>
+        <div id="section_format" hidden>
+          <label id="label_format">Format du Label</label>
+          <select class="ui fluid dropdown" name="LABEL_FORMAT">
+            <option value="">Selectionnez</option>
+            <option value="VIA_JSON">VIA_JSON</option>
+          </select>
+          <br><br>
+          <label for="">Fichier d'Annontation</label>
+          <input type="file" name="LABEL_NAME">
+          <br><br>
+        </div>
+      </div>
+      <div id="section_classes">
+        <label for="">Classes :</label>
+        <input type="text" name="CLASSES" value="background" required>
+      </div>
+      <div id="section2" hidden>
+        <h3>Section 2 : Generateur</h3>
+        <label for="">Normalisation</label>:
+        <input type="checkbox" name="RESCALE">
+        <br><br>
+        <label for="">Taille des Images en sortie
+          :</label>
+        <input type="number" name="imgSizeSortiey1" style="width:50px">
+        <strong>x</strong>
+        <input type="number" name="imgSizeSortiey2" style="width:50px">
+        <br><br>
+        <label for="">Taille du batch:</label>
+        <input type="number" name="BATCH_SIZE" min="1" value="1">
+        <br><br>
+        <label for="">Format du label :</label>
+        <select class="ui fluid dropdown" name="CLASS_MODE" id="">
+          <option value="categorical">Categorical</option>
+        </select>
+      </div><br><br>
+      <div id="section3">
+        <h3>Section 3 : Modele</h3>
+        <label for="">Type de Modele :</label>
+        <select class="ui fluid dropdown" name="MODEL_TYPE" id="">
+          <option value="">Selectionnez un type </option>
+          <option value="DENSE_MNIST">DENSE_MNIST</option>
+          <option value="RCNN">RCNN</option>
+          <option value="SSD300">SSD300</option>
+          <option value="CUSTOM">CUSTOM</option>
+        </select><br><br>
+        <label for="">Chemin vers le poids du Modele :</label>
+        <input type="text" name="WEIGHTS_PATH"><br><br>
+        <label for="">Tâche :</label>
+        <select class="ui fluid dropdown" name="TASK" id="">
+          <option value="">Selectionnez une Tâche</option>
+          <option value="TRAIN">Entrainement</option>
+          <option value="INFERENCE">Inférence</option>
+          <option value="FIND_LR">Recherche de learning rate</option>
+          <option value="CHECK_ANNONTATIONS">Vérification des Annontations</option>
+        </select><br><br>
+        <div id="section_logs" hidden>
+          <label for="">Chemin vers le dossier log :</label>
+          <input type="text" name="LOGS_PATH">
+          <br><br>
+        </div>
+        <label for="">Taille des Images en Entrées :</label>
+        <input type="text" name="imgSizeEntreeY1" style="width:50px">
+        <strong>x</strong>
+        <input type="text" name="imgSizeEntreeY2" style="width:50px">
+        <br><br>
+        <label for="">Taille du Batch :</label>
+        <input type="number" name="BATCH_SIZE">
+        <br><br>
+      </div>
+      <div id="section_compilation">
+        <label for="">Métriques :</label>
+        <select class="ui fluid dropdown" name="METRICS">
+          <option value="">Selectionnez</option>
+          <option value="ACC">Précision</option>
+          <option value="LOSS">Perte</option>
+        </select>
+        <br><br>
+        <label for="">Fonction de Perte</label>:
+        <select class="ui fluid dropdown" name="" id="">
+          <option value=""></option>
+          <option value=""></option>
+          <option value=""></option>
+          <option value=""></option>
+          <option value=""></option>
+          <option value=""></option>
+          <option value=""></option>
+          <option value=""></option>
+          <option value=""></option>
+          <option value=""></option>
+          <option value=""></option>
+          <option value=""></option>
+        </select>
+      </div>
+      <br>
+      <input type="submit"  class="ui button green" name="" value="Enregistrer">
       <br><br>
-      <label for="">Formatage des Données</label>
-      <input type="checkbox" name="RESHAPE" checked="true">
-    </div>
-    <br><br>
-    <div id="section_format" hidden>
-      <label id="label_format">Format du Label</label>
-      <select name="LABEL_FORMAT">
-        <option value="">Selectionnez</option>
-        <option value="VIA_JSON">VIA_JSON</option>
-      </select>
-      <br><br>
-      <label for="">Fichier d'Annontation</label>
-      <input type="file" name="LABEL_NAME">
-      <br><br>
-    </div>
+      <a href="/config/generate" id="btn-download"
+        style="background-color:mediumseagreen;color:#fff;padding:5px;border-radius:8px; border:1px solid #fff;"
+        hidden>Telecharger
+      </a>
+    </form>
   </div>
-  <div id="section_classes">
-    <label for="">Classes :</label>
-    <input type="text" name="CLASSES" value="background" required>
-  </div>
-  <div id="section2" hidden>
-    <h3>Section 2 : Generateur</h3>
-    <label for="">Normalisation</label>:
-    <input type="checkbox" name="RESCALE">
-    <br><br>
-    <label for="">Taille des Images en sortie
-      :</label>
-    <input type="number" name="imgSizeSortiey1" style="width:50px">
-    <strong>x</strong>
-    <input type="number" name="imgSizeSortiey2" style="width:50px">
-    <br><br>
-    <label for="">Taille du batch:</label>
-    <input type="number" name="BATCH_SIZE" min="1" value="1">
-    <br><br>
-    <label for="">Format du label :</label>
-    <select name="CLASS_MODE" id="">
-      <option value="categorical">Categorical</option>
-    </select>
-  </div><br><br>
-  <div id="section3">
-    <h3>Section 3 : Modele</h3>
-    <label for="">Type de Modele :</label>
-    <select name="MODEL_TYPE" id="">
-      <option value="">Selectionnez un type </option>
-      <option value="DENSE_MNIST">DENSE_MNIST</option>
-      <option value="RCNN">RCNN</option>
-      <option value="SSD300">SSD300</option>
-      <option value="CUSTOM">CUSTOM</option>
-    </select><br><br>
-    <label for="">Chemin vers le poids du Modele :</label>
-    <input type="text" name="WEIGHTS_PATH"><br><br>
-    <label for="">Tâche :</label>
-    <select name="TASK" id="">
-      <option value="">Selectionnez une Tâche</option>
-      <option value="TRAIN">Entrainement</option>
-      <option value="INFERENCE">Inférence</option>
-      <option value="FIND_LR">Recherche de learning rate</option>
-      <option value="CHECK_ANNONTATIONS">Vérification des Annontations</option>
-    </select><br><br>
-    <div id="section_logs" hidden>
-      <label for="">Chemin vers le dossier log :</label>
-      <input type="text" name="LOGS_PATH">
-      <br><br>
-    </div>
-    <label for="">Taille des Images en Entrées :</label>
-    <input type="text" name="imgSizeEntreeY1" style="width:50px">
-    <strong>x</strong>
-    <input type="text" name="imgSizeEntreeY2" style="width:50px">
-    <br><br>
-    <label for="">Taille du Batch :</label>
-    <input type="number" name="BATCH_SIZE">
-    <br><br>
-  </div>
-  <div id="section_compilation">
-    <label for="">Métriques :</label>
-    <select name="METRICS">
-      <option value="">Selectionnez</option>
-      <option value="ACC">Précision</option>
-      <option value="LOSS">Perte</option>
-    </select>
-    <br><br>
-    <label for="">Fonction de Perte</label>:
-    <select name="" id=""></select>
-    <select name="" id=""></select>
-    <select name="" id=""></select>
-    <select name="" id=""></select>
-    <select name="" id=""></select>
-    <select name="" id=""></select>
-    <select name="" id=""></select>
-    <select name="" id=""></select>
-    <select name="" id=""></select>
-    <select name="" id=""></select>
-    <select name="" id=""></select>
-    <select name="" id=""></select>
-  </div>
-  
-  <input type="submit" name="" value="Enregistrer">
-  <br><br>
-  <a href="/config/generate" id="btn-download"
-    style="background-color:mediumseagreen;color:#fff;padding:5px;border-radius:8px; border:1px solid #fff;"
-    hidden>Telecharger
-  </a>
-</form>
+</div>
 {% endblock %}
 {% block script %}
 <script src="{{url_for('static', filename='js/script_datas.js')}}" charset="utf-8"></script>
+<script>
+  $('select.dropdown').dropdown();
+</script>
 {% endblock %}
