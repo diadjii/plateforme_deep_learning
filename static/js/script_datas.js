@@ -12,8 +12,8 @@ let fieldInputDataPath = $("#field_path_input");
 
 //SECTION 2 FIELDS
 let fieldRescale = $("input[name='RESCALE']");
-let fieldImgSizeY_1 = $("input[name='y1']");
-let fieldImgSizeY_2 = $("input[name='y2']");
+let fieldImgSizeY_1 = $("input[name='imgSizeSortiey1']");
+let fieldImgSizeY_2 = $("input[name='imgSizeSortiey2']");
 let fieldBatchSize = $("input[name='BATCH_SIZE']");
 let fieldClassMode = $("select[name='CLASS_MODE']");
 
@@ -98,6 +98,11 @@ $("#form_load_datas").submit(e => {
   }
 })
 
+fieldInputDataPath.change(e => {
+  console.log(e.target.files[0])
+
+})
+
 function generateConfig() {
   let dataFormat = fieldDataFormat.val();
   let dataFeed = fieldDataFeed.val();
@@ -111,6 +116,7 @@ function generateConfig() {
     reshape = fieldReshape.is(":visible") ? fieldReshape.is(':checked') : null;
   } else {
     dataPath = fieldInputDataPath.val();
+    console.log(fieldInputDataPath[0].files[0].val())
   }
 
   var configurations = {

@@ -48,7 +48,7 @@
       <option value="KERAS_DATASET">KERAS_DATASET</option>
     </select>
     </div><br>
-    
+
     <div class="field">
     <div class="ui label">
     <label for="">Type de Données</label></div>
@@ -88,9 +88,9 @@
 
   <div id="section2" class="field" hidden>
     <h3>Section 2 : Generateur</h3>
-    
+
     <label for="">Normalisation</label>:
-   
+
     <input type="checkbox" name="RESCALE">
     <br><br>
     <div class="ui label">
@@ -121,4 +121,7 @@
 {% endblock %}
 {% block script %}
 <script src="{{url_for('static', filename='js/script_datas.js')}}" charset="utf-8"></script>
+<script>
+  $('select.dropdown').dropdown();
+</script>
 {% endblock %}

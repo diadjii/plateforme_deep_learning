@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('gestion_datas.html.j2')
 
 @app.route('/Telecharger')
 def download_file():
