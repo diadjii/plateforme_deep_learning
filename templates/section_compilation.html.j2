@@ -1,0 +1,54 @@
+<div id="section_compilation" hidden>
+    <label for="">Métriques :</label>
+    <select class="ui fluid dropdown" name="METRICS">
+        <option value="">Selectionnez</option>
+        <option value="ACC">Précision</option>
+        <option value="LOSS">Perte</option>
+    </select>
+    <br><br>
+    <label for="">Fonction de Perte</label>:
+    <select class="ui fluid dropdown" name="LOSS_NAME">
+        <option value="">Selectionnez une fonction de Perte</option>
+        <option value="RCNN_LOSS">RCNN_LOSS</option>
+        <option value="SSD_LOSS">SSD_LOSS</option>
+        <option value="categorical_crossentropy">categorical_crossentropy</option>
+        <option value="mean_squared_error">mean_squared_error</option>
+        <option value="mean_absolute_error">mean_absolute_error</option>
+        <option value="mean_absolute_percentage_error">mean_absolute_percentage_error</option>
+        <option value="mean_squared_percentage_error">mean_squared_percentage_error</option>
+        <option value="mean_squared_logarithmic_error">mean_squared_logarithmic_error</option>
+        <option value="squared_hinge">squared_hinge</option>
+        <option value="hinge">hinge</option>
+        <option value="categorical_hinge">categorical_hinge</option>
+        <option value="logcosh">logcosh</option>
+        <option value="huber_loss">huber_loss</option>
+        <option value="sparse_categorical_crossentropy">sparse_categorical_crossentropy</option>
+        <option value="binary_crossentropy">binary_crossentropy</option>
+        <option value="kullback_leibler_divergence">kullback_leibler_divergence</option>
+        <option value="poisson">poisson</option>
+        <option value="cosine_proximity">cosine_proximity</option>
+        <option value="s_categorical_crossentropy">s_categorical_crossentropy</option>
+    </select>
+    <br><br>
+    <label for="">Fonction d'Optimisation</label>
+    <select class="ui fluid dropdown" name="OPT_NAME">
+        <option value=""></option>
+        <option value="RCNN">RCNN</option>
+        <option value="SGD">SGD</option>
+        <option value="rmsprop">rmsprop</option>
+        <option value="adagrad">adagrad</option>
+        <option value="adadelta">adadelta</option>
+        <option value="adam">adam</option>
+        <option value="adamax">adamax</option>
+        <option value="nadam">nadam</option>
+    </select>
+</div>
+<label for="">Epochs</label>
+<input type="number" name="EPOCHS" value="1" min="1"><br>
+<label for="">Taille du batch</label>
+<input type="number" name="SPEC_BATCH_SIZE" value="1"><br>
+<label for="">Types de Données</label>
+<select class="ui fluid dropdown" name="SPEC_DATA_TYPE">
+    <option selected value="IMAGE">IMAGE</option>
+    <option value="IMAGE_FOLDER">IMAGE_FOLDER</option>
+</select>

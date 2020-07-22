@@ -1,0 +1,33 @@
+<h3>Section 3 : Modele</h3>
+<label for="">Type de Modele :</label>
+<select class="ui fluid dropdown" name="MODEL_TYPE">
+    <option value="">Selectionnez un type </option>
+    <option value="DENSE_MNIST">DENSE_MNIST</option>
+    <option value="RCNN">RCNN</option>
+    <option value="SSD300">SSD300</option>
+    <option value="CUSTOM">CUSTOM</option>
+</select><br><br>
+<label for="">Chemin vers le poids du Modele :</label>
+<input type="text" name="WEIGHTS_PATH"><br><br>
+<label for="">Tâche :</label>
+<select class="ui fluid dropdown" name="TASK" id="">
+    <option value="">Selectionnez une Tâche</option>
+    <option value="TRAIN">Entrainement</option>
+    <option value="INFERENCE">Inférence</option>
+    <option value="FIND_LR">Recherche de learning rate</option>
+    <option value="CHECK_ANNONTATIONS">Vérification des Annontations</option>
+</select>
+<div id="section_logs" hidden>
+    <label for="">Chemin vers le dossier log :</label>
+    <input type="text" name="LOGS_PATH">
+</div>
+<div id="section_modele_img" hidden>
+    <label for="">Taille des Images en Entrées :</label>
+    <input type="text" name="imgSizeEntreey1">
+    <strong>x</strong>
+    <input type="text" name="imgSizeEntreey2">
+</div>
+<div id="section_model_batch" hidden>
+    <label for="">Taille du Batch :</label>
+    <input type="number" name="MODEL_BATCH_SIZE">
+</div>

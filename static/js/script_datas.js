@@ -1,5 +1,5 @@
-$(() => { })
 
+//SECTION DATAS FIELDS
 let fieldReshape = $("input[name='RESHAPE']");
 let fieldClasses = $("input[name='CLASSES']");
 let fieldDataFeed = $("select[name='DATA_FEED']");
@@ -7,27 +7,43 @@ let fieldDataType = $("select[name='DATA_TYPE']");
 let fieldLabelName = $("input[name='LABEL_NAME']");
 let fieldDataFormat = $("select[name='DATA_FORMAT']");
 let fieldLabelFormat = $("select[name='LABEL_FORMAT']");
-let fieldSelectDataPath = $("#field_path_select");
 let fieldInputDataPath = $("#field_path_input");
+let fieldSelectDataPath = $("#field_path_select");
+let sectionSelectDataPath = $("#section_path_select");
 
-//SECTION 2 FIELDS
+//SECTION GENERATOR FIELDS
 let fieldRescale = $("input[name='RESCALE']");
-let fieldImgSizeY_1 = $("input[name='imgSizeSortiey1']");
-let fieldImgSizeY_2 = $("input[name='imgSizeSortiey2']");
 let fieldBatchSize = $("input[name='BATCH_SIZE']");
 let fieldClassMode = $("select[name='CLASS_MODE']");
+let fieldImgSizeSortieY_1 = $("input[name='imgSizeSortiey1']");
+let fieldImgSizeSortieY_2 = $("input[name='imgSizeSortiey2']");
+
+//SECTION MODEL FIELDS
+let fieldTask = $("select[name='TASK']");
+let fieldEpochs = $("input[name='EPOCHS']");
+let fieldOptName = $("select[name='OPT_NAME']");
+let fieldMetrics = $("select[name='METRICS']");
+let fieldLossName = $("select[name='LOSS_NAME']");
+let fieldLogsPath = $("input[name='LOGS_PATH']");
+let fieldModelType = $("select[name='MODEL_TYPE'");
+let fieldWeightPath = $("input[name='WEIGHTS_PATH']");
+let fieldSpecDataType = $("select[name='SPEC_DATA_TYPE']");
+let fieldSpecBatchSize = $("input[name='SPEC_BATCH_SIZE']");
+let fieldModelBatchSize = $("input[name='MODEL_BATCH_SIZE");
+let fieldImgSizeEntreeY_1 = $("input[name='imgSizeEntreey1']");
+let fieldImgSizeEntreeY_2 = $("input[name='imgSizeEntreey2']");
 
 fieldDataFeed.change(e => {
   if (e.currentTarget.value == "KERAS_DATASET") {
     fieldInputDataPath.hide();
     fieldInputDataPath.attr('required', false);
-    fieldSelectDataPath.show();
+    sectionSelectDataPath.show();
     fieldSelectDataPath.attr('required', true)
     $("#section_reshape").show();
   } else {
     fieldInputDataPath.show();
     fieldInputDataPath.attr('required', true);
-    fieldSelectDataPath.hide();
+    sectionSelectDataPath.hide();
     fieldSelectDataPath.attr('required', false)
     $("#section_reshape").hide();
   }
@@ -35,18 +51,17 @@ fieldDataFeed.change(e => {
 
 fieldDataFormat.change(e => {
   if (e.currentTarget.value == "GEN" && fieldDataType.val() == "IMG") {
-    $("#section_format").show();
-    $("#section_classes").show();
+    $("#section_format, #section_classes").show();
     $("#section2").hide();
+
     disableRequiredFieldsSecyion2();
   } else if (e.currentTarget.value == "VOC") {
-    $("#section2").show();
+    $("#section_generateur, #section_classes").show();
+
     activeRequiredFieldsSection2();
-    $("#section_classes").show();
   } else {
-    $("#section_format").hide();
-    $("#section2").hide();
-    disableRequiredFieldsSecyion2();
+    $("#section_format, #section_generateur, #section_classes").hide();
+    disableRequiredFieldsSection2();
   }
 });
 
@@ -58,18 +73,41 @@ fieldDataType.change(e => {
   }
 });
 
+fieldTask.change(evt => {
+  let currentTask = evt.currentTarget.value;
+
+  switch (currentTask) {
+    case "TRAIN":
+      $("#section_compilation, #section_logs").show();
+      break;
+    case "FIND_LR":
+      $("#section_compilation").show();
+      break;
+    default:
+      $("#section_compilation").hide();
+      break;
+  }
+});
+
+fieldModelType.change(e => {
+  let modelType = e.currentTarget.value;
+
+  if (modelType == "SSD300") {
+    $("#section_modele_img, #section_modele_batch, #section_compilation").show();
+  }
+})
+
 $("#form-create-datas").submit(e => {
   e.preventDefault();
 
   let params = generateConfig();
-
+  console.log(params);
   $.post('/config/generate', params).done(response => {
-    console.log(response)
     if (response) {
       $("#btn-download").show();
     }
   }).fail(error => {
-    console.log(error);
+    alert("Une erreur s'est produite lors de la creation du fichier de configuration.")
   })
 })
 
@@ -81,9 +119,9 @@ $("#form_load_datas").submit(e => {
   var reader = new FileReader();
   var configurations = {};
 
-  //evenement declenché si toutefois le fichier chargé
-  reader.onload = e => {
-    let lines = e.target.result;
+  //evenement declenché si toutefois le fichier est chargé
+  reader.onload = evt => {
+    let lines = evt.target.result;
     //recuperation du contenu du fichier de configuration
     configurations = JSON.parse(lines);
   };
@@ -91,16 +129,11 @@ $("#form_load_datas").submit(e => {
   //lecture des lignes
   reader.readAsText(file)
 
-  reader.onloadend = e => {
+  reader.onloadend = () => {
     /*Appel de la fonction qui recupere les données du
     fichier de config et le rempli le formulaire avec ces données*/
     setDatasToForm(configurations.configuration.DATAS)
   }
-})
-
-fieldInputDataPath.change(e => {
-  console.log(e.target.files[0])
-
 })
 
 function generateConfig() {
@@ -111,12 +144,40 @@ function generateConfig() {
   var dataPath;
   var reshape;
 
+  let modelType = fieldModelType.val();
+  let weightPath = fieldWeightPath.val();
+  var task = fieldTask.val();
+  var logsPath = null;
+  var modelClasses = null;
+  var modelImgShape = null;
+  var modelBatchSize = null;
+  var metrics = null;
+  var lossName = null;
+  var optName = null;
+  var specDataType = fieldSpecDataType.val();
+  var specBatchSize = fieldSpecBatchSize.val();
+  var epochs = fieldEpochs.val();
+
+  if (task == "TRAIN" && modelType == "RCNN") {
+    logsPath = fieldLogsPath.val();
+  }
+
+  switch (modelType) {
+    case 'SSD300':
+      modelClasses = classes;
+      modelImgShape = fieldImgSizeEntreeY_1.val() + "x" + fieldImgSizeEntreeY_2.val();
+      modelBatchSize = parseInt(fieldModelBatchSize.val());
+      break;
+    case 'RCNN':
+      modelClasses = classes;
+      break;
+  }
+
   if (dataFeed == "KERAS_DATASET") {
     dataPath = fieldSelectDataPath.val();
     reshape = fieldReshape.is(":visible") ? fieldReshape.is(':checked') : null;
   } else {
     dataPath = fieldInputDataPath.val();
-    console.log(fieldInputDataPath[0].files[0].val())
   }
 
   var configurations = {
@@ -128,9 +189,9 @@ function generateConfig() {
     "CLASSES": classes
   }
 
-  if ($("#section2").is(":visible")) {
+  if ($("#section_generateur").is(":visible")) {
     let rescale = fieldRescale.is(":checked") ? true : false;
-    let targetSize = fieldImgSizeY_1.val() + "x" + fieldImgSizeY_2.val();
+    let targetSize = fieldImgSizeSortieY_1.val() + "x" + fieldImgSizeSortieY_2.val();
     let batchSize = fieldBatchSize.val();
     let classMode = fieldClassMode.val();
 
@@ -138,7 +199,45 @@ function generateConfig() {
     configurations.TARGET_SIZE = targetSize;
     configurations.BATCH_SIZE = batchSize;
     configurations.CLASS_MODE = classMode;
+
     configurations.generator = true;
+  }
+
+  configurations.MODEL = {
+    "MODEL_TYPE": modelType,
+    "WEIGHTS_PATH": weightPath,
+    "TASK": task,
+    "LOGS_PATH": logsPath,
+    "CLASSES": modelClasses,
+    "IMG_SHAPE": modelImgShape,
+    "BATCH_SIZE": modelBatchSize == '1' ? parseInt(modelBatchSize) : null,
+    "CALLBACKS": {},
+  }
+
+  if ($("#section_compilation").is(':visible')) {
+    lossName = fieldLossName.val();
+    optName = fieldOptName.val();
+    metrics = fieldMetrics.val();
+
+    configurations.compilation = true;
+
+    configurations.MODEL.COMPILATION = {
+      "LOSS": {
+        "NAME": lossName,
+      },
+      "OPT": {
+        "NAME": optName,
+      },
+      "METRICS": metrics,
+    }
+  }
+
+  configurations.TASK = {
+    "TASK_NAME": task,
+    "TASK_SPEC": {
+      "EPOCHS": parseInt(epochs),
+      "BATCH_SIZE": parseInt(specBatchSize)
+    }
   }
 
   return configurations;
@@ -146,16 +245,16 @@ function generateConfig() {
 
 function activeRequiredFieldsSection2() {
   fieldClassMode.attr('required', true);
-  fieldImgSizeY_1.attr('required', true);
-  fieldImgSizeY_2.attr('required', true);
+  fieldImgSizeSortieY_1.attr('required', true);
+  fieldImgSizeSortieY_2.attr('required', true);
   fieldBatchSize.attr('required', true);
   fieldRescale.attr('required', true);
 }
 
-function disableRequiredFieldsSecyion2() {
+function disableRequiredFieldsSection2() {
   fieldClassMode.attr('required', false);
-  fieldImgSizeY_1.attr('required', false);
-  fieldImgSizeY_2.attr('required', false);
+  fieldImgSizeSortieY_1.attr('required', false);
+  fieldImgSizeSortieY_2.attr('required', false);
   fieldBatchSize.attr('required', false);
   fieldRescale.attr('required', false);
 }
@@ -182,9 +281,8 @@ function setDatasToForm(datas) {
     fieldRescale.attr("checked", datas.RESCALE == 'true' ? true : false);
     fieldBatchSize.val(datas.BATCH_SIZE);
 
-
-    fieldImgSizeY_1.val(y1);
-    fieldImgSizeY_2.val(y2);
+    fieldImgSizeSortieY_1.val(y1);
+    fieldImgSizeSortieY_2.val(y2);
   }
 
 }
