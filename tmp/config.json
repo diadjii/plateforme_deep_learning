@@ -5,12 +5,27 @@
       "DATA_FEED": "KERAS_DATASET",
       "DATA_PATH": "MNIST",
       "DATA_TYPE": "IMG",
-      "RESHAPE": "false",
+      "RESHAPE": "true",
       "CLASSES": "background",
       "RESCALE": "true",
-      "TARGET_SIZE": "100x100",
-      "BATCH_SIZE": "5",
+      "TARGET_SIZE": "400x300",
+      "BATCH_SIZE": "1",
       "CLASS_MODE": "categorical"
+    },
+    "MODEL": {
+      "MODEL_TYPE": "RCNN",
+      "WEIGHTS_PATH": "/test/models",
+      "LOGS_PATH": "/test/logs",
+      "IMG_SHAPE": "",
+      "BATCH_SIZE": "",
+      "CALLBACKS": {}
+    },
+    "TASK": {
+      "TASK_NAME": "TRAIN",
+      "TASK_SPEC": {
+        "EPOCHS": "1",
+        "BATCH_SIZE": "1"
+      }
     }
   }
 }
