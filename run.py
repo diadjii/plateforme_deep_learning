@@ -2,6 +2,8 @@ from flask import Flask, render_template, send_file, redirect, url_for, request
 
 from helpers import generate_config_file
 
+from trainmnist import mnist_model
+
 app = Flask(__name__)
 
 
@@ -15,6 +17,10 @@ def download_file():
     path = "static/config.json"
     return send_file(path, as_attachment=True)
 
+@app.route('/visualisation')
+def test_mnist():
+    mnist_model()
+    return render_template('visualisation.html.j2')
 
 @app.route('/accueil')
 def accueil():
@@ -37,4 +43,4 @@ def generate_config():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, threaded=False)

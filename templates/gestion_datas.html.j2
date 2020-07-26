@@ -5,6 +5,12 @@
   <form class="ui form row" id="form_load_datas">
     <div class="field">
       <div class="ui label">
+      <label for="">Dossier Racine :</label>
+      <input type="file" name="DATA_PATH" id="field_path_input" multiple directory webkitdirectory mozdirectory>
+      <select id="field_path_select" name="DATA_PATH" hidden>
+        <option value="">Selectionnez</option>
+        <option value="MNIST">MNIST</option>
+      </select>
         <label for="">Charger des données : </label>
       </div>
       <div class="ui label">

@@ -19,6 +19,10 @@
       <i class="icon tachometer alternate"></i>
       Datas
     </h3>
+    <h4 class="item">
+      <i class="icon tachometer alternate"></i>
+     <a href="{{url_for('test_mnist')}}">Visualisation MNIST</a>
+    </h4>
   </div>
   <nav class="ui top fixed menu">
     <a href="#" class="header item">
@@ -26,11 +30,10 @@
     </a>
   </nav>
   <div class="pusher">
-    <div class="main-content">
+    <div class="main-content" style="margin-top: 70px;">
       <div class="ui grid container">
         {% block content %}
         {% endblock %}
-        Telecharger le fichier de configuration <a href="{{url_for('download_file')}}">en cliquant ici</a>
       </div>
     </div>
   </div>
