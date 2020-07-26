@@ -8,14 +8,14 @@
       "RESHAPE": "true",
       "CLASSES": "background",
       "RESCALE": "true",
-      "TARGET_SIZE": "400x300",
+      "TARGET_SIZE": "128x128",
       "BATCH_SIZE": "1",
       "CLASS_MODE": "categorical"
     },
     "MODEL": {
-      "MODEL_TYPE": "RCNN",
+      "MODEL_TYPE": "DENSE_MNIST",
       "WEIGHTS_PATH": "/test/models",
-      "LOGS_PATH": "/test/logs",
+      "LOGS_PATH": "",
       "IMG_SHAPE": "",
       "BATCH_SIZE": "",
       "CALLBACKS": {}
