@@ -1,77 +1,80 @@
-<h3>Section 1 : Les datas</h3>
-
-        <div class="field">
-          <div class="ui label">
-            <label for="">Format des Données :</label>
-          </div>
-          <select name="DATA_FORMAT" class="ui fluid dropdown" required>
-            <option value="">Selectionnez</option>
-            <option value="KERAS">KERAS</option>
-            <option value="VOC">VOC</option>
-            <option value="GEN">GEN</option>
-          </select>
-        </div><br>
-
-        <div class="field">
-          <div class="ui label">
-            <label for="">Dossier Racine :</label>
-          </div>
-          <input type="file" name="DATA_PATH" id="field_path_input" multiple directory webkitdirectory mozdirectory>
-          <div id="section_path_select" hidden>
-            <select id="field_path_select" class="ui fluid dropdown" name="DATA_PATH">
-              <option value="">Selectionnez</option>
-              <option value="MNIST">MNIST</option>
-            </select>
-          </div>
-        </div><br>
-        <div class="field">
-          <div class="ui label">
-            <label for="">Generation des Données :</label></div>
-          <select class="ui fluid dropdown" name="DATA_FEED" required>
-            <option value="">Selectionnez</option>
-            <option value="GENERATOR">GENERATOR</option>
-            <option value="IMG">IMG</option>
-            <option value="KERAS_DATASET">KERAS_DATASET</option>
-          </select>
-        </div><br>
-        <div class="field">
-          <div class="ui label">
-            <label for="">Type de Données</label>
-          </div>
-          <select name="DATA_TYPE" class="ui fluid dropdown" required>
-            <option value="">Selectionnez</option>
-            <option value="IMG">IMG</option>
-          </select>
-          <div class="field" id="section_reshape" hidden>
-            <div class="ui label">
-              <label for="">Formatage des Données</label>
-            </div>
-            <div class="ui input">
-              <input type="checkbox" name="RESHAPE" checked="true">
-            </div>
-          </div><br>
-          <div id="section_format" class="field" hidden>
-            <div class="ui label">
-              <label id="label_format">Format du Label</label>
-            </div>
-            <select name="LABEL_FORMAT" class="ui fluid dropdown">
-              <option value="">Selectionnez</option>
-              <option value="VIA_JSON">VIA_JSON</option>
-            </select>
-            <br>
-            <div class="ui label">
-              <label for="">Fichier d'Annontation</label>
-            </div>
-            <div class="ui label">
-              <input type="file" name="LABEL_NAME">
-            </div>
-          </div>
-        </div><br>
-        <div id="section_classes" class="field" hidden>
-          <div class="ui label">
-            <label for="">Classes :</label>
-          </div>
-          <div class="ui input">
-            <input type="text" name="CLASSES" value="background" required>
-          </div>
-        </div>
+<div class="title header active">
+  <i class="dropdown icon"></i>
+  Datas
+</div>
+<div class="content active" id="section1">
+  <div class="field">
+    <div class="ui label">
+      <label for="">Format des Données :</label>
+    </div>
+    <select name="DATA_FORMAT" class="ui fluid dropdown" required>
+      <option value="">Selectionnez</option>
+      <option value="KERAS">KERAS</option>
+      <option value="VOC">VOC</option>
+      <option value="GEN">GEN</option>
+    </select>
+  </div><br>
+  <div class="field">
+    <div class="ui label">
+      <label for="">Dossier Racine :</label>
+    </div>
+    <input type="file" name="DATA_PATH" id="field_path_input" multiple directory webkitdirectory mozdirectory>
+    <div id="section_path_select" hidden>
+      <select id="field_path_select" class="ui fluid dropdown" name="DATA_PATH">
+        <option value="">Selectionnez</option>
+        <option value="MNIST">MNIST</option>
+      </select>
+    </div>
+  </div>
+  <div class="field">
+    <div class="ui label">
+      <label for="">Generation des Données :</label></div>
+    <select class="ui fluid dropdown" name="DATA_FEED" required>
+      <option value="">Selectionnez</option>
+      <option value="GENERATOR">GENERATOR</option>
+      <option value="IMG">IMG</option>
+      <option value="KERAS_DATASET">KERAS_DATASET</option>
+    </select>
+  </div>
+  <div class="field">
+    <div class="ui label">
+      <label for="">Type de Données</label>
+    </div>
+    <select name="DATA_TYPE" class="ui fluid dropdown" required>
+      <option value="">Selectionnez</option>
+      <option value="IMG">IMG</option>
+    </select>
+    <div class="field" id="section_reshape" hidden>
+      <div class="ui label">
+        <label for="">Formatage des Données</label>
+      </div>
+      <div class="ui input">
+        <input type="checkbox" name="RESHAPE" checked="true">
+      </div>
+    </div><br>
+    <div id="section_format" class="field" hidden>
+      <div class="ui label">
+        <label id="label_format">Format du Label</label>
+      </div>
+      <select name="LABEL_FORMAT" class="ui fluid dropdown">
+        <option value="">Selectionnez</option>
+        <option value="VIA_JSON">VIA_JSON</option>
+      </select>
+      <br>
+      <div class="ui label">
+        <label for="">Fichier d'Annontation</label>
+      </div>
+      <div class="ui label">
+        <input type="file" name="LABEL_NAME">
+      </div>
+    </div>
+  </div>
+  <div id="section_classes" class="field" hidden>
+    <div class="ui label">
+      <label for="">Classes :</label>
+    </div>
+    <div class="ui input">
+      <input type="text" name="CLASSES" value="background" required>
+    </div>
+  </div>
+</div>

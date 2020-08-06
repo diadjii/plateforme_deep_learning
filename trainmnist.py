@@ -3,7 +3,7 @@ from tensorflow.keras import models
 from tensorflow.keras import layers
 from tensorflow.keras.utils import to_categorical
 import matplotlib.pyplot as plt
-import mpld3
+#import mpld3
 
 def mnist_model():
     (train_images, train_labels), (test_images, test_labels) = mnist.load_data()

@@ -19,7 +19,7 @@ def download_file():
 
 @app.route('/visualisation')
 def test_mnist():
-    mnist_model()
+   # mnist_model()
     return render_template('visualisation.html.j2')
 
 @app.route('/accueil')

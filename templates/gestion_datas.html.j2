@@ -2,47 +2,58 @@
 
 {% block content %}
 <div class="ui">
+  <h1 class="ui header teal">Configurations</h1>
+  <br>
   <form class="ui form row" id="form_load_datas">
-    <div class="field">
-      <div class="ui label">
-      <label for="">Dossier Racine :</label>
-      <input type="file" name="DATA_PATH" id="field_path_input" multiple directory webkitdirectory mozdirectory>
-      <select id="field_path_select" name="DATA_PATH" hidden>
-        <option value="">Selectionnez</option>
-        <option value="MNIST">MNIST</option>
-      </select>
-        <label for="">Charger des données : </label>
+    <div class="ui grid ten wide column">
+      <div class="field">
+        <div class="ui label">
+          <label for="">Charger un fichier de Configuration</label>
+        </div>
       </div>
-      <div class="ui label">
+      <div class="ui small">
         <input type="file" id="file" required>
       </div>
-      <button type="submit" class="ui primary button">Charger</button>
-    </div><br>
+      <div class="ui">
+        <button type="submit" class="ui primary button medium">Charger le fichier</button>
+
+      </div>
+    </div>
   </form>
-  <div class="ui row">
-    <form class="ui form " id="form-create-datas">
-      <div class="section1">
-        {% include 'section_datas.html.j2'%}
-      </div>
+  <br>
+  <br>
+  <div class="ui grid ">
+    <div class="sixteen wide column ">
+      <form class="ui form " id="form-create-datas">
+        <div class="ui styled accordion">
+          {% include 'section_datas.html.j2'%}
+          <div id="section_generateur" class="field" hidden>
+            {% include 'section_generateur.html.j2' %}
+          </div>
 
-      <div id="section_generateur" class="field" hidden>
-        {% include 'section_generateur.html.j2' %}
-      </div>
+          <div class="title">
+            <i class="dropdown icon"></i>
+            Modele
+          </div>
+          <div class="content">
+            <div id="section_modele">
+              {% include 'section_modele.html.j2'%}
+            </div>
 
-      <div id="section_modele">
-        {% include 'section_modele.html.j2'%}
-      </div>      
-        {% include 'section_compilation.html.j2' %}
-      
-      <div class="ui input">
-        <input type="submit" name="" class="ui positive button" value="Enregistrer">
-      </div>
-      <br><br>
-      <a href="/config/generate" id="btn-download" lass="ui button" hidden>Telecharger
-      </a>
-    </form>
+            {% include 'section_compilation.html.j2' %}
+          </div>
+        </div>
+        <div class="ui input">
+
+          <input type="submit" name="" class="ui positive button" value="Enregistrer">
+        </div>
+        <a href="/config/generate" id="btn-download" lass="ui button" hidden>Telecharger
+        </a>
+      </form>
+    </div>
   </div>
 </div>
+
 {% endblock %}
 {% block script %}
 <script src="{{url_for('static', filename='js/script_datas.js')}}" charset="utf-8"></script>

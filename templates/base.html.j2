@@ -15,19 +15,23 @@
 
 <body>
   <div class="ui sidebar vertical menu sidebar-menu" id="sidebar">
-    <h3 class="item">
-      <i class="icon tachometer alternate"></i>
-      Datas
-    </h3>
-    <h4 class="item">
-      <i class="icon tachometer alternate"></i>
-     <a href="{{url_for('test_mnist')}}">Visualisation MNIST</a>
-    </h4>
+    <div>
+      <a class="item">
+        <i class="icon tachometer alternate"></i>
+        Datas
+      </a>
+      <a class="item" href="{{url_for('test_mnist')}}">
+        <i class="icon tachometer alternate"></i>
+        Visualisation MNIST
+      </a>
+    </div>
   </div>
-  <nav class="ui top fixed menu">
-    <a href="#" class="header item">
-      Plateforme Deep Learning
-    </a>
+  <nav class="ui top inverted fixed menu">
+    <div class="left menu">
+      <a href="#" class="header item">
+        Plateforme Deep Learning
+      </a>
+    </div>
   </nav>
   <div class="pusher">
     <div class="main-content" style="margin-top: 70px;">
@@ -40,7 +44,6 @@
   <div id="footer">
   </div>
   {% block script %}
-
   {% endblock %}
   </div>
 </body>

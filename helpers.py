@@ -42,6 +42,16 @@ def generate_config_file(datas):
         config_params['configuration']['DATAS']['BATCH_SIZE'] = datas['BATCH_SIZE']
         config_params['configuration']['DATAS']['CLASS_MODE'] = datas['CLASS_MODE']
 
+    if 'compilation' in datas.keys():
+        config_params['configuration']['MODEL']['COMPILATION'] = {
+            "LOSS":{
+                "NAME":datas['MODEL[COMPILATION][LOSS][NAME]']
+                },
+            "OPT":{
+                "NAME":datas['MODEL[COMPILATION][OPT][NAME]']
+                },
+            "METRICS":datas['MODEL[COMPILATION][METRICS]']
+        }
     with open(json_url, 'w') as json_file:
         json.dump(config_params, json_file, indent=2)
 

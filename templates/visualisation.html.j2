@@ -1,52 +1,11 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
+{% extends "base.html.j2" %}
 
-<head>
-  <meta charset="utf-8">
-  <title>Plateforme Deep Learning</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
-    integrity="sha256-9mbkOfVho3ZPXfM7W8sV2SndrGDuh7wuyLjtsWeTI1Q=" crossorigin="anonymous" />
+{% block content %}
+<div class="ui ten wide column">
+  <img class="ui image" src="{{url_for('static', filename='images/mnistaccuracy.png')}}">
+</div>
+<div class="ui ten wide column">
+  <img src="{{url_for('static', filename='images/mnistloss.png')}}">
+</div>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
-    integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
-  <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
-  <script src="{{url_for('static', filename='js/jquery.min.js')}}" charset="utf-8"></script>
-   <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
-      integrity="sha256-9mbkOfVho3ZPXfM7W8sV2SndrGDuh7wuyLjtsWeTI1Q="
-      crossorigin="anonymous"
-    />
-
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
-      integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ="
-      crossorigin="anonymous"
-    />
-</head>
-
-<body>
-  <div class="ui sidebar vertical menu sidebar-menu" id="sidebar">
-    <h3 class="item">
-      <i class="icon tachometer alternate"></i>
-      Datas
-    </h3>
-    <h4 class="item">
-      <i class="icon tachometer alternate"></i>
-     <a href="{{url_for('test_mnist')}}">Visualisation MNIST</a>
-    </h4>
-  </div>
-  <nav class="ui top fixed menu">
-      <a href="#" class="header item">
-        Plateforme Deep Learning
-      </a>
-  </nav>
-   <div class="main-content">
-      <div class="ui grid container">
-      <img src="{{url_for('static', filename='images/mnistaccuracy.png')}}">
-      
-      <img src="{{url_for('static', filename='images/mnistloss.png')}}">
-      </div>
-    </div>
-</body>
+{% endblock %}

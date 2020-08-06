@@ -33,6 +33,12 @@ let fieldModelBatchSize = $("input[name='MODEL_BATCH_SIZE");
 let fieldImgSizeEntreeY_1 = $("input[name='imgSizeEntreey1']");
 let fieldImgSizeEntreeY_2 = $("input[name='imgSizeEntreey2']");
 
+$('.ui.accordion').accordion();
+
+$("#load-config-file").click(e => {
+  $('.ui.modal').modal('show');
+})
+
 fieldDataFeed.change(e => {
   if (e.currentTarget.value == "KERAS_DATASET") {
     fieldInputDataPath.hide();

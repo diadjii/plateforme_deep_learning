@@ -5,20 +5,29 @@
       "DATA_FEED": "KERAS_DATASET",
       "DATA_PATH": "MNIST",
       "DATA_TYPE": "IMG",
-      "RESHAPE": "true",
+      "RESHAPE": "",
       "CLASSES": "background",
       "RESCALE": "true",
-      "TARGET_SIZE": "128x128",
-      "BATCH_SIZE": "1",
+      "TARGET_SIZE": "1252x1252",
+      "BATCH_SIZE": "5",
       "CLASS_MODE": "categorical"
     },
     "MODEL": {
-      "MODEL_TYPE": "DENSE_MNIST",
+      "MODEL_TYPE": "SSD300",
       "WEIGHTS_PATH": "/test/models",
       "LOGS_PATH": "",
-      "IMG_SHAPE": "",
+      "IMG_SHAPE": "1200x1200",
       "BATCH_SIZE": "",
-      "CALLBACKS": {}
+      "CALLBACKS": {},
+      "COMPILATION": {
+        "LOSS": {
+          "NAME": "mean_absolute_percentage_error"
+        },
+        "OPT": {
+          "NAME": "RCNN"
+        },
+        "METRICS": "ACC"
+      }
     },
     "TASK": {
       "TASK_NAME": "TRAIN",
