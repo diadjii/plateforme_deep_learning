@@ -4,9 +4,8 @@
 <head>
   <meta charset="utf-8">
   <title>Plateforme Deep Learning</title>
-  <!--
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
-    integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />-->
+    integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
   <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
   <link rel="stylesheet" href="{{url_for('static', filename='css/semantic.min.css')}}">
   <script src="{{url_for('static', filename='js/jquery.min.js')}}" charset="utf-8"></script>
@@ -16,12 +15,12 @@
 <body>
   <div class="ui sidebar vertical menu sidebar-menu" id="sidebar">
     <div>
-      <a class="item">
-        <i class="icon tachometer alternate"></i>
-        Datas
+      <a class="item" href="/configuration">
+        <i class="icon cogs"></i>
+        Configurations
       </a>
       <a class="item" href="{{url_for('test_mnist')}}">
-        <i class="icon tachometer alternate"></i>
+        <i class="icon eye"></i>
         Visualisation MNIST
       </a>
     </div>

@@ -181,7 +181,11 @@ function generateConfig() {
 
   if (dataFeed == "KERAS_DATASET") {
     dataPath = fieldSelectDataPath.val();
-    reshape = fieldReshape.is(":visible") ? fieldReshape.is(':checked') : null;
+    reshape = false;
+    if (fieldReshape.is(":visible")) {
+      reshape = fieldReshape.is(':checked') ? true : false;
+    }
+
   } else {
     dataPath = fieldInputDataPath.val();
   }

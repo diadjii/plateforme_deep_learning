@@ -1,11 +1,15 @@
 {% extends "base.html.j2" %}
 
 {% block content %}
-<div class="ui ten wide column">
-  <img class="ui image" src="{{url_for('static', filename='images/mnistaccuracy.png')}}">
+<div>
+  <button class="ui button black" id="btn-display">Lancer la visualisation</button>
 </div>
-<div class="ui ten wide column">
-  <img src="{{url_for('static', filename='images/mnistloss.png')}}">
+<div id="images" >
+  <img src="static/images/loader.gif" id="loader" hidden>
 </div>
 
 {% endblock %}
+
+{% block script %}
+<script src="{{url_for('static', filename='js/script-visualisation.js')}}"></script>
+{%endblock%}

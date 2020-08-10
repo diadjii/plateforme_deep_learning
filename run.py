@@ -2,7 +2,7 @@ from flask import Flask, render_template, send_file, redirect, url_for, request
 
 from helpers import generate_config_file
 
-from trainmnist import mnist_model
+from trainmnist import Visualisation
 
 app = Flask(__name__)
 
@@ -18,11 +18,18 @@ def download_file():
     return send_file(path, as_attachment=True)
 
 @app.route('/visualisation')
-def test_mnist():
-   # mnist_model()
+def test_mnist(): 
     return render_template('visualisation.html.j2')
 
-@app.route('/accueil')
+@app.route('/display-graphe')
+def start_visualisation():
+    graphe = Visualisation()
+    graphe.mnist_model()
+    graphe.hist()
+    
+    return "ok"
+
+@app.route('/configuration')
 def accueil():
     return render_template('gestion_datas.html.j2')
 
