@@ -1,0 +1,17 @@
+{% extends "base.html.j2" %}
+
+{% block content %}
+<div class="row">
+<div class="ui grid eight wide column">
+    <img src="../static/images/{{imagename}}">
+</div>
+<div class="ui grid eight wide column" id="slider">
+    <img src="../static/images/imagemasque0.2.jpg" id="slide">
+    <div id="precedent" onclick="ChangeSlide(-1)"><</div>
+    <div id="suivant" onclick="ChangeSlide(1)">></div>
+</div>
+</div>
+{% endblock %}
+{% block script %}
+<script src="{{url_for('static', filename='js/slider.js')}}"></script>
+{%endblock%}
