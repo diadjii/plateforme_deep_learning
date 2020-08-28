@@ -50,12 +50,7 @@ def showmask():
         imagename = secure_filename(image.filename)
         image.save(os.path.join('static/images', imagename))
         mask = AfficherMasque(os.path.join('static/images', imagename))
-        mask.affiche(0.2)
-        mask.affiche(0.4)
         mask.affiche(0.5)
-        mask.affiche(0.6)
-        mask.affiche(0.8)
-        mask.affiche(1.0)
 
     return render_template('showmask.html.j2', imagename = imagename)
 

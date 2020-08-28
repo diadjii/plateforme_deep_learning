@@ -5,10 +5,9 @@
 <div class="ui grid eight wide column">
     <img src="../static/images/{{imagename}}">
 </div>
-<div class="ui grid eight wide column" id="slider">
-    <img src="../static/images/imagemasque0.2.jpg" id="slide">
-    <div id="precedent" onclick="ChangeSlide(-1)"><</div>
-    <div id="suivant" onclick="ChangeSlide(1)">></div>
+<div class="slidecontainer ui grid eight wide column">
+    <img src="../static/images/imagemasque.jpg">
+    <input type="range" min="0" max="10" value="5" class="slider" id="myRange">
 </div>
 </div>
 {% endblock %}

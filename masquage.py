@@ -14,7 +14,7 @@ class AfficherMasque():
         output = image.copy()
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         blurred = cv2.GaussianBlur(gray, (11, 11), 0)
-
+        
         # threshold the image to reveal light regions in the
         # blurred image
         thresh = cv2.threshold(blurred, 200, 255, cv2.THRESH_BINARY)[1]
@@ -57,5 +57,5 @@ class AfficherMasque():
                         cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 0, 255), 2)
             image_new = cv2.addWeighted(output, alpha, image, 1 - alpha, 0)
         # show the output image
-        cv2.imwrite("static/images/imagemasque"+str(alpha)+".jpg", image_new)
+        cv2.imwrite("static/images/imagemasque.jpg", image_new)
         cv2.waitKey(0)
