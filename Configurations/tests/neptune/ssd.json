@@ -1,0 +1,47 @@
+{"configuration": {
+	"DATAS": {
+		"DATA_PATH" : "D:datas\\Kayar_28.03.2019\\pirogues-mer",
+		"DATA_FORMAT" : "VOC",
+		"DATA_TYPE" : "IMG",
+		"DATA_FEED" : "GENERATOR",
+		"CLASSES" : ["Background", "pirogue"],
+		"GENERATOR" : {
+			"RESCALE" : 255,
+			"TARGET_SIZE" : [300,300],
+			"BATCH_SIZE" : 64,
+			"CLASS_MODE" : "categorical"
+		}
+	},
+	"TASK": {
+		"TASK_NAME" :"TRAIN",
+		"TASK_SPEC" : {
+			"EPOCHS" : 5,
+			"STEPS_PER_EPOCH" : 50,
+			"BATCH_SIZE" : 32
+		}
+	},
+	"MODEL" : {
+		"MODEL_TYPE" :"SSD300",
+		"MODEL_NAME" : "pirogues_512_ssd300_30epochs__",
+		"WEIGHTS_PATH" : "D:\\workspace\\SL_platform\\Instances\\Models\\weights\\ssd300_VGG_VOC0712_300x300_iter_120000.h5",
+		"IMG_SHAPE" : [300,300,3],
+		"TASK" : "TRAIN",
+		"CLASSES" : ["Background", "pirogue"],
+		"BATCH_SIZE" : 32,
+		"COMPILATION" : {
+			"LOSS" : {
+				"NAME" : "SSD_LOSS",
+				"NPR" : 3,
+				"ALPHA": 1.0
+			},
+			"OPT" : {
+				"NAME" : "SGD",
+				"LR" : 0.001,
+				"MOMENTUM" : 0.9,
+				"DECAY" : 0.0,
+				"NESTEROV" : "False",
+			},
+			"METRICS" : []
+		},
+	}
+}}

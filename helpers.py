@@ -1,3 +1,5 @@
+import random
+import string
 import os
 import json
 
@@ -22,6 +24,7 @@ def generate_config_file(datas):
     config_params['configuration']['MODEL'] = {
         "MODEL_TYPE": datas['MODEL[MODEL_TYPE]'],
         "WEIGHTS_PATH": datas['MODEL[WEIGHTS_PATH]'],
+        "TASK": datas['MODEL[TASK]'],
         "LOGS_PATH": datas['MODEL[LOGS_PATH]'],
         "IMG_SHAPE": datas['MODEL[IMG_SHAPE]'],
         "BATCH_SIZE": datas['MODEL[BATCH_SIZE]'],
@@ -44,15 +47,24 @@ def generate_config_file(datas):
 
     if 'compilation' in datas.keys():
         config_params['configuration']['MODEL']['COMPILATION'] = {
-            "LOSS":{
-                "NAME":datas['MODEL[COMPILATION][LOSS][NAME]']
-                },
-            "OPT":{
-                "NAME":datas['MODEL[COMPILATION][OPT][NAME]']
-                },
-            "METRICS":datas['MODEL[COMPILATION][METRICS]']
+            "LOSS": {
+                "NAME": datas['MODEL[COMPILATION][LOSS][NAME]']
+            },
+            "OPT": {
+                "NAME": datas['MODEL[COMPILATION][OPT][NAME]']
+            },
+            "METRICS": datas['MODEL[COMPILATION][METRICS]']
         }
+
     with open(json_url, 'w') as json_file:
         json.dump(config_params, json_file, indent=2)
 
         return True
+
+
+def get_random_string(length=10):
+    letters = string.ascii_lowercase
+    
+    result_str = ''.join(random.choice(letters) for i in range(length))
+    
+    return result_str

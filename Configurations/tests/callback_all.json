@@ -1,0 +1,72 @@
+{"configuration": {
+	"DATAS": {
+		"DATA_FORMAT" : "KERAS",
+		"DATA_FEED" : "KERAS_DATASET",
+		"DATA_PATH" : "MNIST",
+		"DATA_TYPE" : "IMG",
+		"RESHAPE" : "True"
+	},
+	"TASK": {
+		"TASK_NAME" : "TRAIN",
+		"TASK_SPEC" : {
+			"EPOCHS" : 12,
+			"BATCH_SIZE" : 128
+		}
+	},
+	"MODEL" : {
+		"MODEL_TYPE" : "DENSE_MNIST",
+		"WEIGHTS_PATH" : "KERAS_EASY",
+		"TASK" : "TRAIN",
+		"COMPILATION" : {
+			"LOSS" : {
+				"NAME" : "categorical_crossentropy"
+			},
+			"OPT" : {
+				"NAME" : "rmsprop"
+			},
+			"METRICS" : ["accuracy"]
+		},
+    "CALLBACKS" : {
+      "CHECKPOINT" : {
+        "PATH" : "D:\\datas\\Outputs\\checkpoint_0.h5",
+        "VB" : 1,
+        "MONITOR" : "val_loss",
+        "BEST_ONLY" : "False",
+        "WEIGHTS_ONLY" : "True",
+        "MODE" : "auto",
+        "PERIOD" : 1
+      },
+      "EARLY_STOPPING" : {
+        "MONITOR" : "val_loss",
+        "MIN_DELTA" : 0.1,
+        "PATIENCE" : 5,
+        "VB" : 1
+      },
+      "LR_SCHEDULER":{
+				"TYPE" : "LR_DECAY",
+				"SCHEDULE" : "POLY",
+				"INIT_ALPHA" : 0.01,
+				"MAX_EPOCHS" : 12,
+        "POWER" : 5,
+        "VB" : 0
+			},
+      "TERMINATE_NAN" : "True",
+      "REDUCE_LR_ON_PLATEAU":{
+        "MONITOR" : "val_loss",
+        "FACTOR" : 0.1,
+        "PATIENCE" : 5,
+        "MIN_LR" : 0.0001
+      },
+      "CSV_LOGGER":{
+        "FILENAME" : "csv_logger_default_",
+        "SEP" : ",",
+        "APPEND" : "True"
+      }
+    }
+	},
+	"OUTPUT" : {
+		"SAVE_MODE" : "ALL",
+		"OUTPUT_PATH" : "EXAMPLE_ARCHITECTURE",
+		"OUTPUT_NAME" : "dense_mnist.h5"
+	}
+}}
