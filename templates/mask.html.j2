@@ -1,0 +1,17 @@
+{% extends "base.html.j2" %}
+
+{% block content %}
+<div class="ui grid ten wide column">
+  <form class="ui form row" method="post" enctype="multipart/form-data" action="/mask/show">
+    <div class="ui small">
+      <input type="file" name="image_mask" required>
+    </div>
+    <div class="ui">
+      <input type="submit" class="ui primary button medium" value="charger une image" id="btn-showmask">
+    </div>
+  </form>
+</div>
+<div id="imagemask" >
+ 
+</div>
+{% endblock %}

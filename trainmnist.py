@@ -15,7 +15,6 @@ class Visualisation():
     def mnist_model(self):
         self.network.add(layers.Dense(512, activation='relu', input_shape=(28 * 28,)))
         self.network.add(layers.Dense(10, activation='softmax'))
-        
         self.network.compile(optimizer='sgd',loss='categorical_crossentropy', metrics=['accuracy'])
 
         self.train_images = self.train_images.reshape((60000, 28 * 28))

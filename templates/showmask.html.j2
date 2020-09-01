@@ -1,0 +1,16 @@
+{% extends "base.html.j2" %}
+
+{% block content %}
+<div class="row">
+<div class="ui grid eight wide column">
+    <img src="../static/images/{{imagename}}">
+</div>
+<div class="slidecontainer ui grid eight wide column">
+    <img src="../static/images/imagemasque.jpg">
+    <input type="range" min="0" max="10" value="5" class="slider" id="myRange">
+</div>
+</div>
+{% endblock %}
+{% block script %}
+<script src="{{url_for('static', filename='js/slider.js')}}"></script>
+{%endblock%}

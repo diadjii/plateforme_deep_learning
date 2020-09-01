@@ -1,9 +1,10 @@
+import os
 
-import numpy as np
+from flask import Flask, render_template, send_file, redirect, url_for, request
 
-from flask import Flask, render_template, send_file, redirect, url_for, request, jsonify
-from sklearn.model_selection import train_test_split
-from tensorflow.keras.datasets import mnist
+from werkzeug.utils import secure_filename
+
+from helpers import generate_config_file
 
 from confusionmatrix import ConfusionMatrix
 from Configurations.configuration import Configuration
@@ -12,9 +13,11 @@ from Instances.Training.train import TrainingInstance
 from Instances.Inference.inference import InferenceInstance
 from Instances.Visualization.visualization import VisualizationInstance
 from trainmnist import Visualisation
+from tensorflow.keras.datasets import mnist
+from masquage import AfficherMasque
 
 app = Flask(__name__)
-
+ 
 
 @app.route('/')
 def index():
