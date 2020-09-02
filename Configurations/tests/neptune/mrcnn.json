@@ -1,0 +1,34 @@
+{"configuration": {
+	"DATAS": {
+		"DATA_FORMAT" : "GEN",
+		"DATA_FEED" : "GENERATOR",
+		"DATA_PATH" : "D:\\datas\\balloon",
+		"DATA_TYPE" : "IMG",
+    "LABEL_FORMAT": "VIA_JSON",
+		"LABEL_NAME" : "via_region_data.json",
+    "CLASSES" : ["Background", "balloon"]
+	},
+	"TASK": {
+		"TASK_NAME" : "TRAIN",
+		"TASK_SPEC" : {
+			"EPOCHS" : 12,
+      "BATCH_SIZE" : 8,
+		}
+	},
+  "MODEL" : {
+		"LOGS_PATH": "D:\\datas\\balloon\\Outputs",
+		"WEIGHTS_PATH" : "rcnn_coco",
+		"MODEL_TYPE" :"RCNN",
+		"TASK": "TRAIN",
+		"CLASSES" : ["Background", "balloon"],
+		"COMPILATION" : {
+			"LOSS" : {
+				"NAME" : "RCNN_LOSS"
+			},
+			"OPT" : {
+				"NAME" : "RCNN"
+			},
+			"METRICS" : []
+		}
+	}
+}}

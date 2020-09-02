@@ -1,0 +1,20 @@
+{"configuration": {
+	"DATAS": {
+		"DATA_FORMAT" : "GEN",
+		"DATA_FEED" : "GENERATOR",
+		"DATA_PATH" : "D:\\datas\\balloon\\train",
+		"DATA_TYPE" : "IMG",
+    "LABEL_FORMAT": "VIA_JSON",
+    "LABEL_NAME" : "via_region_data.json",
+		"RESHAPE" : "True"
+	},
+	"TASK": {
+		"TASK_NAME" : "CHECK_ANNOTATIONS",
+		"TASK_SPEC" : {}
+	},
+	"MODEL" : {
+		"MODEL_TYPE" : "",
+		"WEIGHTS_PATH" : "",
+  },
+	"OUTPUT" : {}
+}}

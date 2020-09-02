@@ -1,0 +1,43 @@
+##### USE CASE FOR THE MAIN SCRIPT
+
+
+####TESTS (machine perso )
+python D:\workspace\SL_platform\main.py -c D:\workspace\SL_platform\Configurations\tests\lr_cyclic.json
+
+python D:\workspace\SL_platform\main.py -c D:\workspace\SL_platform\Configurations\tests\visualize_annotations.json
+
+python D:\workspace\SL_platform\main.py -c D:\workspace\SL_platform\Configurations\tests\generator.json
+
+python D:\workspace\SL_platform\main.py -c D:\workspace\SL_platform\Configurations\tests\ssd.json
+
+python D:\workspace\SL_platform\main.py -c D:\workspace\SL_platform\Configurations\examples\dense_mnist_train.json
+
+
+###USE_CASES (neptune )
+python D:\theo\workspace\SL_platform\main.py -c D:\theo\workspace\SL_platform\Configurations\example_train.json
+
+python D:\theo\workspace\SL_platform\main.py -c D:\theo\workspace\SL_platform\Configurations\pirogues_plage_decoupees_512.json
+
+python D:\theo\workspace\SL_platform\main.py -c D:\theo\workspace\SL_platform\Configurations\pirogues_plage_decoupees_512_inference.json
+
+python D:\theo\workspace\SL_platform\main.py -c D:\theo\workspace\SL_platform\Configurations\pirogues_plage_decoupees_512_inference_on_folder.json
+
+python D:\theo\workspace\SL_platform\main.py -c D:\theo\workspace\SL_platform\Configurations\balloon_rcnn_train.json
+
+python D:\theo\workspace\SL_platform\main.py -c D:\theo\workspace\SL_platform\Configurations\balloon_rcnn_retrain.json
+
+python D:\theo\workspace\SL_platform\main.py -c D:\theo\workspace\SL_platform\Configurations\balloon_rcnn_inference.json
+
+python D:\theo\workspace\SL_platform\main.py -c D:\theo\workspace\SL_platform\Configurations\emile_remote_mango\mask_rcnn_remote_mango_annotations.json
+
+python D:\theo\workspace\SL_platform\main.py -c D:\theo\workspace\SL_platform\Configurations\emile_remote_mango\mask_rcnn_remote_mango_train.json
+
+python D:\theo\workspace\SL_platform\main.py -c D:\theo\workspace\SL_platform\Configurations\emile_remote_mango\mask_rcnn_remote_mango_inference.json
+
+python D:\workspace\SL_platform\main.py -c D:\workspace\SL_platform\Configurations\emile_remote_mango\mask_rcnn_remote_mango_sliced_train.json
+
+python D:\theo\workspace\SL_platform\main.py -c D:\theo\workspace\SL_platform\Configurations\emile_remote_mango\mask_rcnn_remote_mango_sliced_annotations.json
+
+python D:\theo\workspace\SL_platform\main.py -c D:\theo\workspace\SL_platform\Configurations\emile_remote_mango\mask_rcnn_remote_mango_sliced_retrain.json
+
+python D:\theo\workspace\SL_platform\main.py -c D:\theo\workspace\SL_platform\Configurations\emile_remote_mango\mask_rcnn_remote_mango_sliced_inference.json

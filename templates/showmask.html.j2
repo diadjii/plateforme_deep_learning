@@ -2,12 +2,19 @@
 
 {% block content %}
 <div class="row">
+    <h1 class="ui header teal row">Configurations</h1>
+    <div class="ui raised segment">
+        <h4 class="ui header">Description :</h4>
+        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+    </div>
 <div class="ui grid eight wide column">
-    <img src="../static/images/{{imagename}}">
+    <img src="/static/images/{{imagename}}" name="{{imagename}}" id="img">
 </div>
 <div class="slidecontainer ui grid eight wide column">
-    <img src="../static/images/imagemasque.jpg">
-    <input type="range" min="0" max="10" value="5" class="slider" id="myRange">
+    <div id="new">
+        <img src="/static/images/imagemasque.jpg">
+    </div>
+    <input type="range" min="0" max="10" step="0.1" value="5" class="slider" id="myRange">
 </div>
 </div>
 {% endblock %}

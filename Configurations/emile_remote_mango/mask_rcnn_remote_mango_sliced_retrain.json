@@ -1,0 +1,75 @@
+{"configuration": {
+	"DATAS": {
+		"DATA_PATH" : "D:\\theo\\datas\\Emile_Remote_Mango\\Dataset\\",
+		"DATA_FORMAT" : "GEN",
+		"DATA_TYPE" : "IMG",
+		"DATA_FEED" : "GENERATOR",
+		"LABEL_FORMAT": "VIA_JSON",
+		"LABEL_NAME" : "via_region_data.json",
+		"CLASSES" : ["Background", "manguier"],
+		"GENERATOR" : {
+			"RESCALE" : 255,
+			"TARGET_SIZE" : [300,300],
+			"BATCH_SIZE" : 2,
+			"CLASS_MODE" : "categorical"
+		}
+	},
+	"TASK": {
+		"TASK_NAME" : "TRAIN",
+		"TASK_SPEC" : {
+			"DATA_TYPE" : "IMAGE",
+			"BATCH" : 100,
+			"CONFIDENCE_THRESH" : 0.5,
+			"IOU" : 0.4,
+			"TOP_K" : 200,
+			"NORM" : "True",
+			"TARGET_SIZE" : [300,300],
+			"EPOCHS" : 50,
+			"BATCH_SIZE" : 2,
+			"STEPS_PER_EPOCH" : 100
+		}
+	},
+	"MODEL" : {
+		"LOGS_PATH": "D:\\theo\\datas\\Emile_Remote_Mango\\Outputs",
+		"WEIGHTS_PATH" : "D:\\theo\\datas\\Emile_Remote_Mango\\Outputs\\default_name20200504T1145\\mask_rcnn_default_name_0033.h5",
+		"MODEL_TYPE" :"RCNN",
+		"TASK": "TRAIN",
+		"IMG_SHAPE" : [300,300,3],
+		"CLASSES" : ["Background", "manguier"],
+		"BATCH_SIZE" : 2,
+		"COMPILATION" : {
+			"LOSS" : {
+				"NAME" : "RCNN_LOSS",
+				"NPR" : 3,
+				"ALPHA": 1.0
+			},
+			"OPT" : {
+				"NAME" : "RCNN",
+				"LR" : 0.001,
+				"MOMENTUM" : 0.9,
+				"DECAY" : 0.0,
+				"NESTEROV" : "False",
+			},
+			"METRICS" : []
+		},
+		"CALLBACKS" : {
+			"CHECKPOINT" : {
+				"PATH" : "D:\\theo\\datas\\Emile_Remote_Mango\\Outputs\\checkpoint.h5",
+				"VB" : 1,
+				"MONITOR" : "val_loss",
+				"BEST_ONLY" : "False",
+				"WEIGHTS_ONLY" : "True",
+				"MODE" : "auto",
+				"PERIOD" : 1
+			},
+			"TERMINATE_NAN" : "True"
+
+		}
+	},
+	"OUTPUT" : {
+		"OUTPUT_PATH": "D:\\theo\\datas\\Emile_Remote_Mango\\Outputs",
+		"OUTPUT_NAME": "mask_rcnn_remote_mango_2epochs.h5",
+		"SAVE_MODEL" : 0
+	}
+
+}}

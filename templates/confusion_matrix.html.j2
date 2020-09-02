@@ -1,0 +1,28 @@
+{% extends "base.html.j2" %}
+
+
+{% block content %}
+    <div>
+        <button class="ui button blue" id="btn-display">Générer la matrice de Confusion</button>
+    </div>
+    <div id="images" >
+        <img src="static/images/loader.gif" id="loader" hidden>
+    </div>
+{% endblock %}
+{% block script %}
+    <script>
+        $(() => {
+           $("#btn-display").click(() => {
+               $.getJSON('/generate_matrix').done(response => {
+                   console.log(response)
+                   img = `<div class="ui ten wide column">
+                    <img src="static/images/confusion_matrix/${response.name}" width="450px" >
+                    </div>`;
+                   $("#images").html(img)
+               }).fail(error => {
+                   console.log(error)
+               })
+           })
+        })
+    </script>
+{%endblock%}

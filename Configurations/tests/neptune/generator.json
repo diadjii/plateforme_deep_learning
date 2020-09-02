@@ -1,0 +1,55 @@
+{"configuration": {
+	"DATAS": {
+		"DATA_FORMAT" : "GEN",
+		"DATA_FEED" : "GENERATOR",
+		"DATA_PATH" : "D:\\datas\\balloon",
+		"DATA_TYPE" : "IMG",
+    "LABEL_FORMAT": "VIA_JSON",
+		"LABEL_NAME" : "via_region_data.json",
+    "CLASSES" : ["Background", "balloon"],
+		"GENERATOR" : {
+			"RESCALE" : 255,
+			"TARGET_SIZE" : [300,300],
+			"BATCH_SIZE" : 8,
+			"CLASS_MODE" : "categorical"
+		},
+	},
+	"TASK": {
+		"TASK_NAME" : "TRAIN",
+		"TASK_SPEC" : {
+			"EPOCHS" : 12,
+      "BATCH_SIZE" : 8,
+      "DATA_TYPE" : "IMAGE",
+			"CONFIDENCE_THRESH" : 0.5,
+			"IOU" : 0.4,
+			"TOP_K" : 200,
+			"NORM" : "True",
+			"TARGET_SIZE" : [300,300],
+			"STEPS_PER_EPOCH" : 100
+		}
+	},
+  "MODEL" : {
+		"LOGS_PATH": "D:\\datas\\balloon\\Outputs",
+		"WEIGHTS_PATH" : "rcnn_coco",
+		"MODEL_TYPE" :"RCNN",
+		"TASK": "TRAIN",
+		"IMG_SHAPE" : [300,300,3],
+		"CLASSES" : ["Background", "balloon"],
+		"BATCH_SIZE" : 8,
+		"COMPILATION" : {
+			"LOSS" : {
+				"NAME" : "RCNN_LOSS",
+				"NPR" : 3,
+				"ALPHA": 1.0
+			},
+			"OPT" : {
+				"NAME" : "RCNN",
+				"LR" : 0.001,
+				"MOMENTUM" : 0.9,
+				"DECAY" : 0.0,
+				"NESTEROV" : "False",
+			},
+			"METRICS" : []
+		}
+	}
+}}

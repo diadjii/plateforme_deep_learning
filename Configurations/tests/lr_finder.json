@@ -1,0 +1,37 @@
+{"configuration": {
+	"DATAS": {
+		"DATA_FORMAT" : "KERAS",
+		"DATA_FEED" : "KERAS_DATASET",
+		"DATA_PATH" : "MNIST",
+		"DATA_TYPE" : "IMG",
+		"RESHAPE" : "True"
+	},
+	"TASK": {
+		"TASK_NAME" : "FIND_LR",
+		"TASK_SPEC" : {
+			"EPOCHS" : 12,
+			"BATCH_SIZE" :64,
+      "BASE_LR" : 1e-10,
+      "MAX_LR" : 1e+1
+		}
+	},
+	"MODEL" : {
+		"MODEL_TYPE" : "DENSE_MNIST",
+		"WEIGHTS_PATH" : "KERAS_EASY",
+		"TASK" : "FIND_LR",
+		"COMPILATION" : {
+			"LOSS" : {
+				"NAME" : "categorical_crossentropy"
+			},
+			"OPT" : {
+				"NAME" : "rmsprop"
+			},
+			"METRICS" : ["accuracy"]
+		}
+  },
+	"OUTPUT" : {
+		"SAVE_MODE" : "ALL",
+		"OUTPUT_PATH" : "EXAMPLE_ARCHITECTURE",
+		"OUTPUT_NAME" : "dense_mnist.h5"
+	}
+}}
