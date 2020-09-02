@@ -60,16 +60,15 @@ def showmask():
 
         mask = AfficherMasque(os.path.join('static/images', imagename))
 
-        mask.affiche(0.8)
-       
-        
+        mask.affiche(0.5)
+  
         return render_template('showmask.html.j2', imagename = imagename)
     else:
         image_name= request.args.get('name')
         alpha = request.args.get('alpha')
 
         mask = AfficherMasque(os.path.join('static/images', image_name))
-
+        
         mask.affiche(float(alpha))
         
         return 'ok'
