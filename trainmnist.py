@@ -27,7 +27,7 @@ class Visualisation():
         self.test_labels = to_categorical(self.test_labels)
 
 
-    def hist(self, ):   
+    def hist(self):   
         hist = self.network.fit(self.train_images, self.train_labels, epochs=5, batch_size=128, validation_split=.1)
             
         plt.plot(hist.history['accuracy'])
