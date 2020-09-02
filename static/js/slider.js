@@ -10,11 +10,11 @@ slider.oninput = function () {
     type: 'GET',
     success: function (response) {
       console.log(response);
-      $("#new").html('<img src="/static/images/imagemasque.jpg">');
+      $("#new").attr('src', '/static/images/imagemasque.jpg');
     },
     error: function (error) {
       console.log('False');
 
     }
   });
-} 
+}
