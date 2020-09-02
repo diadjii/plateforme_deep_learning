@@ -44,3 +44,7 @@ body ::-webkit-scrollbar {
   }
 }
 /*# sourceMappingURL=style.css.map */
+
+#sidebar{
+  width: 250px;
+}

@@ -17,8 +17,9 @@
 </head>
 
 <body>
-  <div class="ui sidebar vertical menu sidebar-menu" id="sidebar">
+  <div class="ui sidebar vertical menu sidebar-menu medium" id="sidebar">
     <div>
+      <h2 style="text-align:center;">Tableau de bords</h2>
       <a class="item" href="/configuration">
         <i class="icon cogs"></i>
         Configurations
@@ -27,9 +28,13 @@
         <i class="icon eye"></i>
         Visualisation MNIST
       </a>
-       <a class="item" href="{{url_for('page_confusion_matrix')}}">
-        <i class="icon eye"></i>
-        Génération Matrice de Confusion
+      <a class="item" href="{{url_for('page_confusion_matrix')}}">
+        <i class="icon chart bar"></i>
+        Matrice de Confusion
+      </a>
+      <a class="item" href="{{url_for('mask')}}">
+        <i class="icon sliders horizontal"></i>
+        Traitement d'Images
       </a>
     </div>
   </div>

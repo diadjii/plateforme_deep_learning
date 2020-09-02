@@ -1,18 +1,20 @@
 var slider = document.getElementById("myRange");
-var output = slider.value; // Display the default slider value
-console.log(output)
-// Update the current slider value (each time you drag the slider handle)
-slider.oninput = function() {
+var output = slider.value;
+
+slider.oninput = function () {
   output = this.value;
+  let img_name = $("#img").attr('name');
+
   $.ajax({
-    url: '/mask/show?alpha=' + output,
+    url: '/mask/show?alpha=' + output + '&name=' + img_name,
     type: 'GET',
     success: function (response) {
-        console.log(response);
+      console.log(response);
+      $("#new").html('<img src="/static/images/imagemasque.jpg">');
     },
     error: function (error) {
-        console.log('False');
-        
+      console.log('False');
+
     }
- });
+  });
 } 

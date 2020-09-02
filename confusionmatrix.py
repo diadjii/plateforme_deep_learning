@@ -47,7 +47,7 @@ class ConfusionMatrix:
 
         fig, ax = plt.subplots(figsize=figsize)
         ax.margins(x = 0.1, y= 0.1)
-        sns.heatmap(self.cm, annot=True, fmt='', ax=ax, cbar_kws={"orientation": "horizontal"})
+        sns.heatmap(self.cm, annot=True, fmt='', ax=ax)
 
         img_name = get_random_string()
         b, t = plt.ylim() # discover the values for bottom and top

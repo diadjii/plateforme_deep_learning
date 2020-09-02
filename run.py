@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template, send_file, redirect, url_for, request
+from flask import Flask, render_template, send_file, redirect, url_for, request, jsonify
 
 from werkzeug.utils import secure_filename
 
@@ -44,11 +44,40 @@ def start_visualisation():
 
     return "ok"
 
+@app.route('/mask')
+def mask():
+    return render_template('mask.html.j2')
+
+
+@app.route('/mask/show', methods=['GET', 'POST'])
+def showmask():
+    if request.method == 'POST':
+        image = request.files['image_mask']
+        
+        imagename = secure_filename(image.filename)
+
+        image.save(os.path.join('static/images', imagename))
+
+        mask = AfficherMasque(os.path.join('static/images', imagename))
+
+        mask.affiche(0.8)
+       
+        
+        return render_template('showmask.html.j2', imagename = imagename)
+    else:
+        image_name= request.args.get('name')
+        alpha = request.args.get('alpha')
+
+        mask = AfficherMasque(os.path.join('static/images', image_name))
+
+        mask.affiche(float(alpha))
+        
+        return 'ok'
+
 
 @app.route('/configuration')
 def accueil():
     return render_template('gestion_datas.html.j2')
-
 
 @app.route('/config/generate', methods=['POST', 'GET'])
 def generate_config():
@@ -112,6 +141,7 @@ def get_confusion_matrix():
     preds = conf.make_predictions(new_test_images)
 
     conf.generate_matrix(test_labels, preds)
+    
     img_name = conf.generate_image()
 
     return jsonify(name=img_name)
