@@ -12,9 +12,12 @@ from helpers import generate_config_file
 from Instances.Training.train import TrainingInstance
 from Instances.Inference.inference import InferenceInstance
 from Instances.Visualization.visualization import VisualizationInstance
+from Instances.Models.model_instance import ModelInstance
+
 from trainmnist import Visualisation
 from tensorflow.keras.datasets import mnist
 from masquage import AfficherMasque
+from classification_report import ClassificationReport
 
 app = Flask(__name__)
  
@@ -38,9 +41,23 @@ def test_mnist():
 
 @app.route('/display-graphe')
 def start_visualisation():
+    model = Visualisation()
+    hist = model.mnist_model()
     graphe = Visualisation()
-    graphe.mnist_model()
-    graphe.hist()
+    graphe.display_train_val(hist)
+
+    return "ok"
+
+@app.route('/visualisation/auc-roc-map-p-r')
+def courbe():
+    return render_template('generation_courbes.html.j2')
+
+
+@app.route('/display-metriques')
+def visualisationcourbe():
+    clr = ClassificationReport()
+
+    clr.classification_mnist()
 
     return "ok"
 
@@ -53,24 +70,24 @@ def mask():
 def showmask():
     if request.method == 'POST':
         image = request.files['image_mask']
-        
+            
         imagename = secure_filename(image.filename)
 
-        image.save(os.path.join('static/images', imagename))
+        image.save(os.path.join('static/outputs', imagename))
 
-        mask = AfficherMasque(os.path.join('static/images', imagename))
+        mask = AfficherMasque(os.path.join('static/outputs', imagename))
 
         mask.affiche(0.5)
-  
+    
         return render_template('showmask.html.j2', imagename = imagename)
     else:
         image_name= request.args.get('name')
         alpha = request.args.get('alpha')
 
-        mask = AfficherMasque(os.path.join('static/images', image_name))
-        
+        mask = AfficherMasque(os.path.join('static/outputs', image_name))
+                
         mask.affiche(float(alpha))
-        
+                
         return 'ok'
 
 

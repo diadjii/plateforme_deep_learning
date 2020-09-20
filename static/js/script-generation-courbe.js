@@ -1,17 +1,15 @@
-
-
 $("#btn-display").click(() => {
     $("#loader").show();
 
-    $.get('/display-graphe').done(response => {
+    $.get('/display-metriques').done(response => {
         console.log(response);
         
         $("#images").html(`
         <div class="ui ten wide column">
-            <img class="ui image" src="static/outputs/mnistaccuracy.png">
+            <img class="ui image" src="../static/outputs/metriquePR.png">
         </div>
         <div class="ui ten wide column">
-            <img src="static/outputs/mnistloss.png">
+            <img src="../static/outputs/metriqueROC.png">
         </div>`);
 
         $("#images").load()

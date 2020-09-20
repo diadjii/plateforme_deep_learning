@@ -174,3 +174,5 @@ class TrainingInstance:
 				visu.show_cyclic_lr(lr)
 
 		print('TODO : display the history datas ')
+
+

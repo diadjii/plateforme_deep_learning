@@ -54,6 +54,6 @@ class ConfusionMatrix:
         b += 0.5 # Add 0.5 to the bottom
         t -= 0.5 # Subtract 0.5 from the top
         plt.ylim(b, t) # update the ylim(bottom, top) values
-        plt.savefig('static/images/confusion_matrix/' + img_name, dpi=300, bbox_inches='tight')
+        plt.savefig('static/outputs/confusion_matrix/' + img_name, dpi=300, bbox_inches='tight')
 
         return img_name + '.png'
