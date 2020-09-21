@@ -8,10 +8,10 @@ $("#btn-display").click(() => {
         
         $("#images").html(`
         <div class="ui ten wide column">
-            <img class="ui image" src="static/images/mnistaccuracy.png">
+            <img class="ui image" src="static/outputs/mnistaccuracy.png">
         </div>
         <div class="ui ten wide column">
-            <img src="static/images/mnistloss.png">
+            <img src="static/outputs/mnistloss.png">
         </div>`);
 
         $("#images").load()

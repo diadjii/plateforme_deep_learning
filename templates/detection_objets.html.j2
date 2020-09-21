@@ -1,0 +1,67 @@
+{% extends "base.html.j2" %}
+
+{% block content %}
+<div>
+  <form id="form" enctype="multipart/form-data">
+    <input type="file" name="image">
+    <button class="ui button blue " id="btn-load-file" type="submit">charger une Image</button>
+  </form>
+
+  <br>
+
+  <div class="row">
+    <div class="ui modal">
+      <div class="header">Image Détection</div>
+      <div class="image content" >
+        <div id="result"></div>
+        <div class="description ui" id="details">
+        <h3>Object(s)</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{%endblock%}
+{% block script %}
+<script>
+  $("#form").submit(e => {
+    e.preventDefault();
+
+    $("#btn-load-file").addClass("loading");
+
+    myForm = $("#form")[0]
+
+    formData = new FormData(myForm);
+
+    $.ajax({
+      url: "/go_detect_objects",
+      type: "POST",
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function (response) {
+        $("#btn-load-file").removeClass("loading");
+        
+        d = Object.entries(response.details)
+        console.log(d)
+        if (response) {
+          $("#result").html(`<img class="ui rounded image" src="static/images/`+response.image+`">`);
+           $("#details").empty();
+           $("#details").append("<h3>Object(s)</h3>")
+          d.forEach(item => {
+            let i = `<a class="ui label">${item[0]} :<div class="detail">${item[1]}</div></a> <br><br>`;
+
+            $("#details").append(i);
+
+          })
+          $(".modal").modal('show');
+        }
+      },
+      error: function (error) {
+        console.log(error)
+      }
+    });
+  })
+</script>
+{%endblock%}

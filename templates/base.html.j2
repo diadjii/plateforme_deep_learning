@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
   <link rel="stylesheet" href="{{url_for('static', filename='css/semantic.min.css')}}">
   <link rel="stylesheet" href="{{url_for('static', filename='css/slider.css')}}">
-  
+
   <script src="{{url_for('static', filename='js/jqueryslim.js')}}" charset="utf-8"></script>
   <script src="{{url_for('static', filename='js/jquery.min.js')}}" charset="utf-8"></script>
   <script src="{{url_for('static', filename='js/semantic.min.js')}}" charset="utf-8"></script>
@@ -28,6 +28,10 @@
         <i class="icon eye"></i>
         Visualisation MNIST
       </a>
+      <a class="item" href="{{url_for('courbe')}}">
+        <i class="icon eye"></i>
+        Visualisation PR and ROC
+      </a>
       <a class="item" href="{{url_for('page_confusion_matrix')}}">
         <i class="icon chart bar"></i>
         Matrice de Confusion
@@ -35,6 +39,10 @@
       <a class="item" href="{{url_for('mask')}}">
         <i class="icon sliders horizontal"></i>
         Traitement d'Images
+      </a>
+      <a class="item" href="{{url_for('detection')}}">
+        <i class="icon sliders horizontal"></i>
+        Détection d'Objects
       </a>
     </div>
   </div>

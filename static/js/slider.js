@@ -10,7 +10,7 @@ slider.oninput = function () {
     type: 'GET',
     success: function (response) {
       console.log(response);
-      $("#new").attr('src', '/static/images/imagemasque.jpg');
+      $("#new").attr('src', '/static/outputs/imagemasque.png');
     },
     error: function (error) {
       console.log('False');

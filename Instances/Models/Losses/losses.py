@@ -62,6 +62,5 @@ class Loss():
 		# print(' VERBOSE LOSS : ',loss)
 		return loss
 
-
 	def check_conf(self):
 		print(' TODO : check loss configuration')

@@ -2,4 +2,4 @@
 venv
 *.pyc
 .sonarlint/
-__pycache__
+__pycache__ 
