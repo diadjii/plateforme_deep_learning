@@ -6,7 +6,7 @@ from psutil._common import bytes2human
 
 # let's print CPU information
 class  PCState():
-    def _init_(self):
+    def __init__(self):
         self.data = {}
 
     def get_info(self):
