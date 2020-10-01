@@ -9,7 +9,7 @@ json_url = os.path.join(SITE_ROOT, 'tmp', 'config.json')
 
 def generate_config_file(datas):
     config_params = {}
-    print(datas)
+    
     config_params['configuration'] = {}
 
     config_params['configuration']['DATAS'] = {

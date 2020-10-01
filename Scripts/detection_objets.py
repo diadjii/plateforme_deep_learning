@@ -41,7 +41,6 @@ class ObjectDetection():
         width = img.shape[1]
         height = img.shape[0]
         scale = 0.00392
-
     
         with open(self.classes_path, 'r') as f:
             self.classes = [line.strip() for line in f.readlines()]
@@ -97,4 +96,5 @@ class ObjectDetection():
 
         self.results['image'] = 'object-detection.jpg'
         self.results['details'] = self.objects
+        
         return True

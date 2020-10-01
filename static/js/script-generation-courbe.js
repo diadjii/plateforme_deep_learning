@@ -6,10 +6,10 @@ $("#btn-display").click(() => {
         
         $("#images").html(`
         <div class="ui ten wide column">
-            <img class="ui image" src="../static/outputs/metriquePR.png">
+            <img class="ui image" src="../static/images/outputs/metriquePR.png">
         </div>
         <div class="ui ten wide column">
-            <img src="../static/outputs/metriqueROC.png">
+            <img src="../static/images/outputs/metriqueROC.png">
         </div>`);
 
         $("#images").load()

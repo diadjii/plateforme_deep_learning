@@ -2,21 +2,24 @@ import os
 from werkzeug.utils import secure_filename
 
 from flask import Flask, render_template, send_file, redirect, url_for, request, jsonify
+from flask_socketio import SocketIO, send, emit
 from tensorflow.keras.datasets import mnist
 
-from trainmnist import Visualisation
 from Configurations.configuration import Configuration
 from Instances.Training.train import TrainingInstance
 from Instances.Inference.inference import InferenceInstance
 from Instances.Visualization.visualization import VisualizationInstance
 from Instances.Models.model_instance import ModelInstance
-from confusionmatrix import ConfusionMatrix
-from helpers import generate_config_file
-from masquage import AfficherMasque
-from detection_objets import ObjectDetection
-from classification_report import ClassificationReport
+from Scripts.trainmnist import Visualisation
+from Scripts.confusionmatrix import ConfusionMatrix
+from Scripts.helpers import generate_config_file
+from Scripts.masquage import AfficherMasque
+from Scripts.detection_objets import ObjectDetection
+from Scripts.classification_report import ClassificationReport
+from Scripts.pc_state import PCState
 
 app = Flask(__name__)
+socketio = SocketIO(app)
 
 @app.route('/')
 def index():
@@ -45,7 +48,6 @@ def start_visualisation():
 def courbe():
     return render_template('generation_courbes.html.j2')
 
-
 @app.route('/display-metriques')
 def visualisationcourbe():
     clr = ClassificationReport()
@@ -66,9 +68,9 @@ def showmask():
             
         imagename = secure_filename(image.filename)
 
-        image.save(os.path.join('static/outputs', imagename))
+        image.save(os.path.join('static/images/outputs', imagename))
 
-        mask = AfficherMasque(os.path.join('static/outputs', imagename))
+        mask = AfficherMasque(os.path.join('static/images/outputs', imagename))
 
         mask.affiche(0.5)
     
@@ -77,7 +79,7 @@ def showmask():
         image_name= request.args.get('name')
         alpha = request.args.get('alpha')
 
-        mask = AfficherMasque(os.path.join('static/outputs', image_name))
+        mask = AfficherMasque(os.path.join('static/images/outputs', image_name))
                 
         mask.affiche(float(alpha))
                 
@@ -103,7 +105,7 @@ def generate_config():
 
 @app.route('/training')
 def start_training():
-    conf = Configuration("tmp/config.json")
+    conf = Configuration("tmp/test_minist.json")
     task_name = conf.dic['TASK']['TASK_NAME']
 
     if len(conf.errors) == 0:
@@ -133,26 +135,28 @@ def start_training():
 def page_confusion_matrix():
     return render_template('confusion_matrix.html.j2')
 
-@app.route('/generate_matrix')
+@socketio.on('generate_matrix')
+#@app.route('/generate_matrix')
 def get_confusion_matrix():
     (train_images, train_labels), (test_images, test_labels) = mnist.load_data()
 
     conf = ConfusionMatrix()
-
     # reshape image from 3D --> 1D
     new_train_images = train_images.reshape((60000, 28*28))
     new_test_images = test_images.reshape(10000, 28*28)
 
     conf.train_classifier(new_train_images, train_labels)
-
+    send("Entrainement du Classifier en cours ...")
     # prediction ==> image test
     preds = conf.make_predictions(new_test_images)
+    send("Prediction en cours...")
 
     conf.generate_matrix(test_labels, preds)
+    send("Generation de la Matrice en cours ...")
 
     img_name = conf.generate_image()
-
-    return jsonify(name=img_name)
+    
+    emit("response_generate_matrix",img_name)
 
 @app.route('/detection_objets')
 def detection():
@@ -172,5 +176,13 @@ def go_detect_objets():
         else:
             return False
 
+@app.route('/state')
+def get_state():
+    pc_state = PCState()
+    data = pc_state.get_info()
+
+    return data
+
 if __name__ == '__main__':
     app.run(debug=True, threaded=False)
+    socketio.run(app)

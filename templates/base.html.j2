@@ -55,6 +55,10 @@
   </nav>
   <div class="pusher">
     <div class="main-content" style="margin-top: 70px;">
+      <div class="ui container">
+       {% include "machine_state.html.j2" %}
+      </div>
+      <br>
       <div class="ui grid container">
         {% block content %}
         {% endblock %}
@@ -63,6 +67,19 @@
   </div>
   <div id="footer">
   </div>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
+    <script src="{{url_for('static', filename='js/Chart.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/machine_state.js')}}"></script>
+    <script>
+      $(() => {
+        $('.ui.checkbox').checkbox();
+        $('select.dropdown').dropdown();
+        $('.infos-details').popup({
+          on:'hover',
+          position:'top center'
+        });
+      })
+    </script>
   {% block script %}
   {% endblock %}
   </div>

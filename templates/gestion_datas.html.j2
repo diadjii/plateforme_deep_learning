@@ -20,7 +20,6 @@
       </div>
       <div class="ui">
         <button type="submit" class="ui primary button medium">Charger le fichier</button>
-
       </div>
     </div>
   </form>
@@ -62,14 +61,4 @@
 {% endblock %}
 {% block script %}
 <script src="{{url_for('static', filename='js/script_datas.js')}}" charset="utf-8"></script>
-<script>
-$(() => {
-  $('.ui.checkbox').checkbox();
-  $('select.dropdown').dropdown();
-  $('.infos-details').popup({
-    on:'hover',
-    position:'top center'
-  });
-})
-</script>
 {% endblock %}

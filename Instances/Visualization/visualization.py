@@ -148,7 +148,7 @@ class VisualizationInstance:
 
 		plt.legend(['Train', 'Val'], loc='lower right')
 
-		plt.savefig('/home/ibson/Documents/plateforme_deep_learning/static/images/mnistaccuracy.png', dpi=100)
+		plt.savefig('static/images/mnistaccuracy.png', dpi=100)
 
 		plt.clf()
          
@@ -163,4 +163,4 @@ class VisualizationInstance:
 			
 		plt.legend(['Train', 'Val'], loc='lower right')
 
-		plt.savefig('/home/ibson/Documents/plateforme_deep_learning/static/images/mnistloss.png', dpi=100)
+		plt.savefig('static/images/mnistloss.png', dpi=100)
