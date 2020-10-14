@@ -18,6 +18,7 @@ limitations under the License.
 
 from __future__ import division
 import tensorflow as tf
+import os
 
 class SSDLoss:
     '''
@@ -124,7 +125,6 @@ class SSDLoss:
         self.neg_pos_ratio = tf.constant(self.neg_pos_ratio)
         self.n_neg_min = tf.constant(self.n_neg_min)
         self.alpha = tf.constant(self.alpha)
-
         batch_size = tf.shape(y_pred)[0] # Output dtype: tf.int32
         n_boxes = tf.shape(y_pred)[1] # Output dtype: tf.int32, note that `n_boxes` in this context denotes the total number of boxes per image, not the number of boxes per cell.
 

@@ -1,11 +1,17 @@
 {% extends "base.html.j2" %}
 
 {% block content %}
-<div>
+<div class="ui">
+    <h1 class="ui header green row">Visualisations PR and ROC</h1>
+  <div class="ui raised segment green">
+    <h4 class="ui header">Description :</h4>
+    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+  </div>
+  <br>
   <button class="ui button black" id="btn-display">Lancer la visualisation</button>
 </div>
 <div id="images" >
-  <img src="../static/outputs/loader.gif" id="loader" hidden>
+  <img src="{{url_for('static', filename='images/loader.gif')}}" id="loader" hidden>
 </div>
 
 {% endblock %}

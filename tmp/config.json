@@ -5,10 +5,13 @@
       "DATA_FEED": "KERAS_DATASET",
       "DATA_PATH": "MNIST",
       "DATA_TYPE": "IMG",
-      "RESHAPE": "false",
+      "RESHAPE": false,
       "CLASSES": "background",
       "RESCALE": "true",
-      "TARGET_SIZE": "240x230",
+      "TARGET_SIZE": [
+        230,
+        250
+      ],
       "BATCH_SIZE": "1",
       "CLASS_MODE": "categorical"
     },
@@ -19,24 +22,13 @@
       "LOGS_PATH": "",
       "IMG_SHAPE": "",
       "BATCH_SIZE": "",
-      "CALLBACKS": {},
-      "COMPILATION": {
-        "LOSS": {
-          "NAME": "SSD_LOSS",
-          "NPR":3,
-          "ALPHA":1.0,
-        },
-        "OPT": {
-          "NAME": "SGD"
-        },
-        "METRICS": "ACC"
-      }
+      "CALLBACKS": {}
     },
     "TASK": {
       "TASK_NAME": "TRAIN",
       "TASK_SPEC": {
-        "EPOCHS": "1",
-        "BATCH_SIZE": "1"
+        "EPOCHS": 1,
+        "BATCH_SIZE": 1
       }
     }
   }

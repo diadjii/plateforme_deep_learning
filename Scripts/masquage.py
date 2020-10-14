@@ -57,5 +57,5 @@ class AfficherMasque():
                         cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 0, 255), 2)
             image_new = cv2.addWeighted(output, alpha, image, 1 - alpha, 0)
         # show the output image
-        cv2.imwrite("static/outputs/imagemasque.png", image_new)
+        cv2.imwrite("static/images/outputs/imagemasque.png", image_new)
         cv2.waitKey(0)

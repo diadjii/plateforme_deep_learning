@@ -2,4 +2,5 @@
 venv
 *.pyc
 .sonarlint/
-__pycache__
+__pycache__ 
+yolo/yolov3.weights

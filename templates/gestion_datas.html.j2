@@ -20,16 +20,15 @@
       </div>
       <div class="ui">
         <button type="submit" class="ui primary button medium">Charger le fichier</button>
-
       </div>
     </div>
   </form>
   <br>
   <br>
-  <div class="ui grid row">
+  <div class="ui grid">
     <div class="sixteen wide column ">
-      <form class="ui form " id="form-create-datas">
-        <div class="ui styled accordion">
+      <form class="ui form" id="form-create-datas">
+        <div class="ui styled accordion fluid">
           {% include 'section_datas.html.j2'%}
           <div id="section_generateur" class="field" hidden>
             {% include 'section_generateur.html.j2' %}
@@ -43,11 +42,13 @@
             <div id="section_modele">
               {% include 'section_modele.html.j2'%}
             </div>
+            <div id="section_compilation" style="display:none;">
 
             {% include 'section_compilation.html.j2' %}
           </div>
+          </div>
         </div>
-        <div class="ui input">
+        <div class="ui center input">
           <input type="submit" name="" class="ui positive button" value="Enregistrer">
         </div>
         <a href="/config/generate" id="btn-download" lass="ui button" hidden>Telecharger
@@ -60,7 +61,4 @@
 {% endblock %}
 {% block script %}
 <script src="{{url_for('static', filename='js/script_datas.js')}}" charset="utf-8"></script>
-<script>
-  $('select.dropdown').dropdown();
-</script>
 {% endblock %}

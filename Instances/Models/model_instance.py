@@ -49,6 +49,9 @@ class ModelInstance:
 		if conf['TASK'] =="TRAIN" or conf['TASK']=='FIND_LR' or conf['MODEL_TYPE'] == 'SSD300':
 			self.compil_options = conf['COMPILATION']
 		self.check_conf()
+    	
+		os.environ['KERAS_BACKEND']='tensorflow'	
+		
 		# self.model=self.load_model()
 
 	def load_model(self):
@@ -186,7 +189,6 @@ class ModelInstance:
 						metrics =self.compil_options['METRICS']
 						)
 		# print(self.model.get_config())
-
 
 	def get_loss(self):
 		loss_conf = self.compil_options['LOSS']

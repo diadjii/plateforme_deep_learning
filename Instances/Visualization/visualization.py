@@ -34,7 +34,11 @@ class VisualizationInstance:
 		N = np.arange(0, epochs)
 		if lr.load_schedule() is not None:
 			lr.load_schedule().plot(N)
-			plt.show()
+			print("Generation de l'image.....")
+			plt.savefig('static/images/test_train.png', dpi=100)
+			print("Fin Generation de l'image.....")
+
+			#plt.show()
 
 	def show_cyclic_lr(self, lr):
 		N = np.arange(0, len(lr.load_lr().history["lr"]))
@@ -144,7 +148,7 @@ class VisualizationInstance:
 
 		plt.legend(['Train', 'Val'], loc='lower right')
 
-		plt.savefig('/home/ibson/Documents/plateforme_deep_learning/static/images/mnistaccuracy.png', dpi=100)
+		plt.savefig('static/images/mnistaccuracy.png', dpi=100)
 
 		plt.clf()
          
@@ -159,4 +163,4 @@ class VisualizationInstance:
 			
 		plt.legend(['Train', 'Val'], loc='lower right')
 
-		plt.savefig('/home/ibson/Documents/plateforme_deep_learning/static/images/mnistloss.png', dpi=100)
+		plt.savefig('static/images/mnistloss.png', dpi=100)

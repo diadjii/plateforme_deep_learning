@@ -45,7 +45,6 @@ class TrainingInstance:
 		data_instance = DataInstance(datas)
 		return(data_instance)
 
-
 	def load_model_instance(self,conf):
 		model_instance = ModelInstance(conf)
 		model_instance.load_model()

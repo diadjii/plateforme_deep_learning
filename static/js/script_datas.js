@@ -39,6 +39,10 @@ $("#load-config-file").click(e => {
   $('.ui.modal').modal('show');
 })
 
+
+$(() => {
+  $(".compilation-field").hide();
+})
 fieldDataFeed.change(e => {
   if (e.currentTarget.value == "KERAS_DATASET") {
     fieldInputDataPath.hide();
@@ -60,7 +64,7 @@ fieldDataFormat.change(e => {
     $("#section_format, #section_classes").show();
     $("#section2").hide();
 
-    disableRequiredFieldsSecyion2();
+    disableRequiredFieldsSection2();
   } else if (e.currentTarget.value == "VOC") {
     $("#section_generateur, #section_classes").show();
 
@@ -84,7 +88,7 @@ fieldTask.change(evt => {
 
   switch (currentTask) {
     case "TRAIN":
-      $("#section_compilation, #section_logs").show();
+      $(".compilation-field, #section_logs").show();
       break;
     case "FIND_LR":
       $("#section_compilation").show();
@@ -228,6 +232,7 @@ function generateConfig() {
     lossName = fieldLossName.val();
     optName = fieldOptName.val();
     metrics = fieldMetrics.val();
+    console.log(metrics);
 
     configurations.compilation = true;
 
@@ -238,7 +243,7 @@ function generateConfig() {
       "OPT": {
         "NAME": optName,
       },
-      "METRICS": metrics,
+      "METRICS": metrics[0]+","+metrics[1],
     }
   }
 

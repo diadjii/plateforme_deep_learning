@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 
-from helpers import get_random_string
+from Scripts.helpers import get_random_string
 
 
 class ConfusionMatrix:
@@ -33,10 +33,6 @@ class ConfusionMatrix:
         # Make predictions
         predicts = self.gnb.predict(test)
 
-        print("***Start Predictions***")
-        print(predicts)
-        print("***Finished Predictions***")
-
         return predicts
 
     def generate_image(self):
@@ -54,6 +50,6 @@ class ConfusionMatrix:
         b += 0.5 # Add 0.5 to the bottom
         t -= 0.5 # Subtract 0.5 from the top
         plt.ylim(b, t) # update the ylim(bottom, top) values
-        plt.savefig('static/outputs/confusion_matrix/' + img_name, dpi=300, bbox_inches='tight')
+        plt.savefig('static/images/outputs/confusion_matrix/' + img_name, dpi=300, bbox_inches='tight')
 
         return img_name + '.png'

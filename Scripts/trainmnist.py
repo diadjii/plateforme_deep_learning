@@ -3,7 +3,6 @@ from tensorflow.keras import models
 from tensorflow.keras import layers
 from tensorflow.keras.utils import to_categorical
 import matplotlib.pyplot as plt
-#import mpld3
 
 
 class Visualisation():
@@ -36,13 +35,13 @@ class Visualisation():
 
     def display_train_val(self, hist):
                 # Accuracy Model Graph
-        plt.plot(hist.history['accuracy'])
-        plt.plot(hist.history['val_accuracy'])
+        plt.plot(hist.history['acc'])
+        plt.plot(hist.history['val_acc'])
         plt.title('Model accuracy')
         plt.ylabel('Accuracy')
         plt.xlabel('Epoch')
         plt.legend(['Train', 'Val'], loc='lower right')
-        plt.savefig('static/outputs/mnistaccuracy.png', dpi=100)
+        plt.savefig('static/images/outputs/mnistaccuracy.png', dpi=100)
         plt.clf()
 
         # Loss Model Graphe
@@ -52,5 +51,5 @@ class Visualisation():
         plt.ylabel('Loss')
         plt.xlabel('Epoch')
         plt.legend(['Train', 'Val'], loc='lower right')
-        plt.savefig('static/outputs/mnistloss.png', dpi=100)
+        plt.savefig('static/images/outputs/mnistloss.png', dpi=100)
         plt.clf()

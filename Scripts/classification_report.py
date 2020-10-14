@@ -35,7 +35,7 @@ class ClassificationReport():
         precisions, recalls, _ = precision_recall_curve(y_true, y_pred, pos_label=5)
         PrecisionRecallDisplay(precision = precisions, recall = recalls, average_precision = average_precision, estimator_name = "AP").plot()
         plt.title('Metrique Precision & Recall')
-        plt.savefig('static/outputs/metriquePR.png', dpi=100)
+        plt.savefig('static/images/outputs/metriquePR.png', dpi=100)
         plt.clf()
 
     
@@ -43,7 +43,7 @@ class ClassificationReport():
         fpr, tpr, _ = roc_curve(y_true, y_pred, pos_label=5)
         RocCurveDisplay(fpr=fpr, tpr=tpr, roc_auc=area_under_curve, estimator_name="AUC").plot()
         plt.title('Metrique Receiver Operator Curve')
-        plt.savefig('static/outputs/metriqueROC.png', dpi=100)
+        plt.savefig('static/images/outputs/metriqueROC.png', dpi=100)
         plt.clf()
 
 
@@ -83,8 +83,3 @@ class ClassificationReport():
         self.precision_recall(Y_test, pred_val_dense0, mAP)
         #Receiver Operator Curve
         self.receiver_operator(Y_test, pred_val_dense0, auc)
-        
-        
-
-
-

@@ -3,31 +3,45 @@
   Generateur
 </div>
 <div class="content">
-  <label for="">Normalisation</label>:
-<input type="checkbox" name="RESCALE">
-<br><br>
-<div class="ui label">
-  <label for="">Taille des Images :</label>
-</div>
-<div class="ui input">
-  <input type="number" name="imgSizeSortiey1" style="width:100px">
-</div>
-<strong>x</strong>
-<div class="ui input">
-  <input type="number" name="imgSizeSortiey2" style="width:100px">
-</div>
-<br><br>
-<div class="ui label">
-  <label for="">Taille du batch:</label>
-</div>
-<div class="ui input">
-  <input type="number" name="BATCH_SIZE" min="1" value="1">
-</div>
-<br><br>
-<div class="ui label">
-  <label for="">Format du label :</label>
-</div>
-<select name="CLASS_MODE" id="" class="ui fluid dropdown">
-  <option value="categorical">Categorical</option>
-</select>
+  <div class="two fields">
+    <div class="field">
+      <strong class="ui">
+        <label for="">Taille des Images :</label>
+        <i class="icon  ui info circle blue infos-details" data-content="Add users to your feed"></i>
+      </strong>
+      <div class="fields">
+        <div class="four wide field">
+          <input type="number" name="imgSizeSortiey1" placeholder="Largeur">
+        </div>
+        <h1 class="two field">x</h1>
+        <div class="four wide field">
+          <input type="number" name="imgSizeSortiey2" placeholder="Hauteur">
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <strong class="ui">
+        <label for="">Taille du batch :</label>
+        <i class="icon  ui info circle blue infos-details" data-content="Add users to your feed"></i>
+      </strong>
+      <div class="ui">
+        <input type="number" name="BATCH_SIZE" min="1" value="1" class="three wide field">
+      </div>
+    </div>
+  </div>
+  <div class="field">
+    <strong class="ui">
+      <label for="">Format du label :</label>
+      <i class="icon  ui info circle blue infos-details" data-content="Add users to your feed"></i>
+    </strong>
+    <select name="CLASS_MODE" id="" class="ui fluid dropdown">
+      <option value="categorical">Categorical</option>
+    </select>
+  </div>
+  <div class=" four wide field">
+    <strong class="ui checkbox">
+      <label for="">Normalisation</label>
+      <input type="checkbox" name="RESCALE" class="hidden">
+    </strong>
+  </div>
 </div>

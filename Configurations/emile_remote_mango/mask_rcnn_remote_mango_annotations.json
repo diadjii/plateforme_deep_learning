@@ -20,7 +20,7 @@
 		"TASK_SPEC" : {
 			"DATA_TYPE" : "IMAGE_FOLDER"
 		}
-		},
+	},
 	"MODEL" : {
 		"LOGS_PATH": "D:\\theo\\datas\\Emile_Remote_Mango\\Outputs",
 		"WEIGHTS_PATH" : "D:\\theo\\workspace\\SL_platform\\Instances\\Models\\weights\\mangos\\mask_rcnn_remote_mango_sliced_0050.h5",
@@ -65,10 +65,10 @@
 				"VB" : 1
 			},
 			"TERMINATE_NAN" : "True"
-<<<<<<< HEAD
-=======
+			<<<<<<< HEAD
+			=======
 
->>>>>>> b6ba03bdbeadb57b6486d4808447cf1126dcba30
+			>>>>>>> b6ba03bdbeadb57b6486d4808447cf1126dcba30
 		}
 	},
 	"TASK_SPEC" : {
@@ -80,4 +80,4 @@
 		"NORM" : "True",
 		"TARGET_SIZE" : [600,600]
 	}
-}}
+	}}
