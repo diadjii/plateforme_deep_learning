@@ -32,7 +32,7 @@ class ClassificationReport():
         return roc_auc
 
     def precision_recall(self, y_true, y_pred, average_precision):
-        precisions, recalls, _ = precision_recall_curve(y_true, y_pred, pos_label=1)
+        precisions, recalls, _ = precision_recall_curve(y_true, y_pred, pos_label=5)
         PrecisionRecallDisplay(precision = precisions, recall = recalls, average_precision = average_precision, estimator_name = "AP").plot()
         plt.title('Metrique Precision & Recall')
         plt.savefig('static/images/outputs/metriquePR.png', dpi=100)
@@ -40,7 +40,7 @@ class ClassificationReport():
 
     
     def receiver_operator(self, y_true, y_pred, area_under_curve):
-        fpr, tpr, _ = roc_curve(y_true, y_pred, pos_label=1)
+        fpr, tpr, _ = roc_curve(y_true, y_pred, pos_label=5)
         RocCurveDisplay(fpr=fpr, tpr=tpr, roc_auc=area_under_curve, estimator_name="AUC").plot()
         plt.title('Metrique Receiver Operator Curve')
         plt.savefig('static/images/outputs/metriqueROC.png', dpi=100)
