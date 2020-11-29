@@ -3,7 +3,6 @@ import os, sys
 import numpy as np
 from imageio import imread
 
-
 from keras.models import load_model
 from keras.preprocessing import image
 
@@ -18,7 +17,6 @@ class InferenceInstance:
 	def __init__(self,conf):
 		self.parse_conf(conf)
 		self.model_instance = self.load_model_instance(conf['MODEL'])
-
 
 	def parse_conf(self,conf):
 		assert conf is not None, 'provided infertence configuration is invalid'

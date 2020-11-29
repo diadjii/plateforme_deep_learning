@@ -5,59 +5,65 @@
   <h1 class="ui header teal row">Configurations</h1>
   <div class="ui raised segment">
     <h4 class="ui header">Description :</h4>
-    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+    <p>
+      Vous pouvez créer des fichiers de configuration en renseignant les informations dans le formulaire ci-dessous.
+      Vous pouvez effectuer faire les operations suivantes : <br>
+      <ul>
+        <li>Créer un fichier de configuration</li>
+        <li>Charger un fichier de configuration et le modifier</li>
+        <li>Télécharger un fichier de configuration</li>
+      </ul>
+    </p>
   </div>
   <br>
   <form class="ui form row" id="form_load_datas">
     <div class="ui grid ten wide column">
       <div class="field">
-        <div class="ui label">
-          <label for="">Charger un fichier de Configuration</label>
-        </div>
-      </div>
-      <div class="ui small">
-        <input type="file" id="file" required>
-      </div>
-      <div class="ui">
-        <button type="submit" class="ui primary button medium">Charger le fichier</button>
-      </div>
+        <!-- <div class="ui label">
+        <label for="">Charger un fichier de Configuration</label>
+      </div> -->
     </div>
-  </form>
-  <br>
-  <br>
-  <div class="ui grid">
-    <div class="sixteen wide column ">
-      <form class="ui form" id="form-create-datas">
-        <div class="ui styled accordion fluid">
-          {% include 'section_datas.html.j2'%}
-          <div id="section_generateur" class="field" hidden>
-            {% include 'section_generateur.html.j2' %}
-          </div>
-
-          <div class="title">
-            <i class="dropdown icon"></i>
-            Modele
-          </div>
-          <div class="content">
-            <div id="section_modele">
-              {% include 'section_modele.html.j2'%}
-            </div>
-            <div id="section_compilation" style="display:none;">
-
-            {% include 'section_compilation.html.j2' %}
-          </div>
-          </div>
-        </div>
-        <div class="ui center input">
-          <input type="submit" name="" class="ui positive button" value="Enregistrer">
-        </div>
-        <a href="/config/generate" id="btn-download" lass="ui button" hidden>Telecharger
-        </a>
-      </form>
+    <div class="ui small">
+      <input type="file" id="file" required>
+    </div>
+    <div class="ui">
+      <button type="submit" class="ui primary button medium">Charger le fichier</button>
     </div>
   </div>
+</form>
+<br>
+<br>
+<div class="ui grid">
+  <div class="sixteen wide column ">
+    <form class="ui form" id="form-create-datas">
+      <div class="ui styled accordion fluid">
+        {% include 'section_datas.html.j2'%}
+        <div id="section_generateur" class="field" hidden>
+          {% include 'section_generateur.html.j2' %}
+        </div>
+        <div class="title">
+          <i class="dropdown icon"></i>
+          Modele
+        </div>
+        <div class="content">
+          <div id="section_modele">
+            {% include 'section_modele.html.j2'%}
+          </div>
+          <div id="section_compilation" style="display:none;">
+            {% include 'section_compilation.html.j2' %}
+          </div>
+        </div>
+      </div>
+      <div class="ui center input">
+        <input type="submit" id="btn-submit" class="ui positive button" value="Enregistrer">
+      </div>
+      <a href="/config/generate" id="btn-download"  hidden>Telecharger
+      </a>
+    </form>
+    <br>
+  </div>
 </div>
-
+</div>
 {% endblock %}
 {% block script %}
 <script src="{{url_for('static', filename='js/script_datas.js')}}" charset="utf-8"></script>
