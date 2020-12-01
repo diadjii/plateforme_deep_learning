@@ -1,31 +1,36 @@
 {
   "configuration": {
     "DATAS": {
-      "DATA_FORMAT": "VOC",
-      "DATA_FEED": "KERAS_DATASET",
-      "DATA_PATH": "MNIST",
+      "DATA_FORMAT": "KERAS",
+      "DATA_FEED": "IMG",
+      "DATA_PATH": "/home/test",
       "DATA_TYPE": "IMG",
       "RESHAPE": false,
-      "CLASSES": "background",
-      "RESCALE": "true",
-      "TARGET_SIZE": [
-        230,
-        250
-      ],
-      "BATCH_SIZE": "1",
-      "CLASS_MODE": "categorical"
+      "CLASSES": "background"
     },
     "MODEL": {
-      "MODEL_TYPE": "DENSE_MNIST",
+      "MODEL_TYPE": "RCNN",
       "WEIGHTS_PATH": "/test/models",
-      "TASK": "TRAIN",
+      "TASK": "CHECK_ANNONTATIONS",
       "LOGS_PATH": "",
       "IMG_SHAPE": "",
       "BATCH_SIZE": "",
-      "CALLBACKS": {}
+      "CALLBACKS": {},
+      "COMPILATION": {
+        "LOSS": {
+          "NAME": ""
+        },
+        "OPT": {
+          "NAME": ""
+        },
+        "METRICS": [
+          "undefined",
+          "undefined"
+        ]
+      }
     },
     "TASK": {
-      "TASK_NAME": "TRAIN",
+      "TASK_NAME": "CHECK_ANNONTATIONS",
       "TASK_SPEC": {
         "EPOCHS": 1,
         "BATCH_SIZE": 1

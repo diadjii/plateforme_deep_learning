@@ -110,11 +110,14 @@ setInterval(function () {
     $.get("/state").done(response => {
         console.log(response)
         $("#ram").text("Ram : "+response.ram_usage)
+
         updateFreqsAndTemp(response.current_freq, response.temperature.asus[0][1]);
+
         updateCore1(response.Core_0)
         updateCore2(response.Core_1)
         updateCore3(response.Core_2)
         updateCore4(response.Core_3)
+
         if (i > 30) {
             data_core1.shift()
             data_core2.shift()
@@ -160,4 +163,3 @@ function updateCore4(core4Val) {
     data_core4.push(core4Val);
     myChartCore4.update();
 }
-

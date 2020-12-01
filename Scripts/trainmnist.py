@@ -8,8 +8,7 @@ import matplotlib.pyplot as plt
 class Visualisation():
 
     def __init__(self):
-        (self.train_images, self.train_labels), (self.test_images,
-                                                 self.test_labels) = mnist.load_data()
+        (self.train_images, self.train_labels), (self.test_images, self.test_labels) = mnist.load_data()
         self.network = models.Sequential()
 
     def mnist_model(self):
@@ -28,8 +27,7 @@ class Visualisation():
         self.train_labels = to_categorical(self.train_labels)
         self.test_labels = to_categorical(self.test_labels)
 
-        hist = self.network.fit(
-            self.train_images, self.train_labels, epochs=5, batch_size=128, validation_split=.1)
+        hist = self.network.fit(self.train_images, self.train_labels, epochs=5, batch_size=128, validation_split=.1)
 
         return hist
 

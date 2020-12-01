@@ -65,7 +65,7 @@ def mask():
 def showmask():
     if request.method == 'POST':
         image = request.files['image_mask']
-            
+
         imagename = secure_filename(image.filename)
 
         image.save(os.path.join('static/images/outputs', imagename))
@@ -73,16 +73,16 @@ def showmask():
         mask = AfficherMasque(os.path.join('static/images/outputs', imagename))
 
         mask.affiche(0.5)
-    
+
         return render_template('showmask.html.j2', imagename = imagename)
     else:
         image_name= request.args.get('name')
         alpha = request.args.get('alpha')
 
         mask = AfficherMasque(os.path.join('static/images/outputs', image_name))
-                
+
         mask.affiche(float(alpha))
-                
+
         return 'ok'
 
 
@@ -146,16 +146,17 @@ def get_confusion_matrix():
     new_test_images = test_images.reshape(10000, 28*28)
 
     conf.train_classifier(new_train_images, train_labels)
-    send("Entrainement du Classifier en cours ...")
+    send("Entrainement du Classifier (ok)")
     # prediction ==> image test
     preds = conf.make_predictions(new_test_images)
-    send("Prediction en cours...")
+    send("Prediction terminée (ok)")
 
     conf.generate_matrix(test_labels, preds)
-    send("Generation de la Matrice en cours ...")
+    send("Generation de la Matrice (ok)")
 
     img_name = conf.generate_image()
-    
+    send("Generation de l'image (ok)")
+
     emit("response_generate_matrix",img_name)
 
 @app.route('/detection_objets')
@@ -170,7 +171,7 @@ def go_detect_objets():
         imagename = secure_filename(img.filename)
         img.save(os.path.join('tmp/', imagename))
         obj = ObjectDetection(os.path.join('tmp/',imagename))
-        
+
         if obj.detect_objects() :
             return obj.results
         else:

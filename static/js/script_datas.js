@@ -88,14 +88,14 @@ fieldTask.change(evt => {
 
   switch (currentTask) {
     case "TRAIN":
-      $(".compilation-field, #section_logs").show();
-      break;
+    $(".compilation-field, #section_logs").show();
+    break;
     case "FIND_LR":
-      $("#section_compilation").show();
-      break;
+    $("#section_compilation").show();
+    break;
     default:
-      $("#section_compilation").hide();
-      break;
+    $("#section_compilation").hide();
+    break;
   }
 });
 
@@ -109,12 +109,18 @@ fieldModelType.change(e => {
 
 $("#form-create-datas").submit(e => {
   e.preventDefault();
+  $("#btn-submit").addClass("loading");
 
   let params = generateConfig();
   console.log(params);
   $.post('/config/generate', params).done(response => {
+    $("#btn-submit").removeClass("loading").val("Enregistrer")
     if (response) {
+      alert("Le fichier de configuration a été générée. Vous pouvez le telecharger en appuyant le bouton telecharger.")
+      $("#btn-download").addClass("ui button secondary");
       $("#btn-download").show();
+    }else{
+      alert("Une erreur s'est produite lors de la generation du fichier de configuration.")
     }
   }).fail(error => {
     alert("Une erreur s'est produite lors de la creation du fichier de configuration.")
@@ -152,7 +158,7 @@ function generateConfig() {
   let dataType = fieldDataType.val();
   let classes = fieldClasses.val();
   var dataPath;
-  var reshape;
+  var reshape=false;
 
   let modelType = fieldModelType.val();
   let weightPath = fieldWeightPath.val();
@@ -174,18 +180,18 @@ function generateConfig() {
 
   switch (modelType) {
     case 'SSD300':
-      modelClasses = classes;
-      modelImgShape = fieldImgSizeEntreeY_1.val() + "x" + fieldImgSizeEntreeY_2.val();
-      modelBatchSize = parseInt(fieldModelBatchSize.val());
-      break;
+    modelClasses = classes;
+    modelImgShape = fieldImgSizeEntreeY_1.val() + "x" + fieldImgSizeEntreeY_2.val();
+    modelBatchSize = parseInt(fieldModelBatchSize.val());
+    break;
     case 'RCNN':
-      modelClasses = classes;
-      break;
+    modelClasses = classes;
+    break;
   }
 
   if (dataFeed == "KERAS_DATASET") {
     dataPath = fieldSelectDataPath.val();
-    reshape = false;
+
     if (fieldReshape.is(":visible")) {
       reshape = fieldReshape.is(':checked') ? true : false;
     }

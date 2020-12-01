@@ -5,11 +5,11 @@ import json
 import ast
 
 SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
-json_url = os.path.join(SITE_ROOT, 'tmp', 'config.json')
+json_url = os.path.join(SITE_ROOT, '../tmp', 'config.json')
 
 def generate_config_file(datas):
     config_params = {}
-    
+
     config_params['configuration'] = {}
 
     config_params['configuration']['DATAS'] = {

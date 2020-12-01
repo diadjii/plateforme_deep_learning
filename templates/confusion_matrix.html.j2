@@ -2,54 +2,44 @@
 
 
 {% block content %}
-    <div class="ui">
-        <h1 class="ui header yellow row">Matrice de Confusion</h1>
-        <div class="ui raised segment yellow">
-            <h4 class="ui header">Description :</h4>
-            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-        </div>
-        <button class="ui button blue" id="btn-display">Générer la matrice de Confusion</button><br>
-        <ul id="steps">
-            
-        </ul>
-    </div>
-    <div id="images" >
-        <img src="static/outputs/loader.gif" id="loader" hidden>
-    </div>
+<div class="ui">
+  <h1 class="ui header yellow row">Matrice de Confusion</h1>
+  <div class="ui raised segment yellow">
+    <h4 class="ui header">Description :</h4>
+    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+  </div>
+  <button class="ui button blue" id="btn-display">Générer la matrice de Confusion</button><br>
+  <ul id="steps">
+
+  </ul>
+</div>
+<div id="images" class="ui grid">
+</div>
 {% endblock %}
 {% block script %}
-  <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
-    <script>
-           $("#btn-display").click(() => {
-                var socket = io();
-                socket.on('connect', function() {
-                   
-                    socket.emit('generate_matrix');
-                    socket.on('message',function(ms){
-                        console.log(ms);
-                        $("#steps").append("<li>"+ms+"</li>")
-                    });
+<script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
+<script>
+$("#btn-display").click(() => {
+  var socket = io();
+  $("#btn-display").addClass("loading");
+  socket.on('connect', function() {
 
-                    socket.on("response_generate_matrix",function(imageName){
-                        img = `<div class="ui ten wide column">
-                                <img src="static/images/outputs/confusion_matrix/${imageName}" width="450px" >
-                                </div>`;
+    socket.emit('generate_matrix');
+    socket.on('message',function(ms){
+      console.log(ms);
+      $("#steps").append("<li>"+ms+"</li>")
+    });
 
-                        $("#images").html(img)
+    socket.on("response_generate_matrix",function(imageName){
+      img = `<div class="ui ten wide column">
+      <img src="static/images/outputs/confusion_matrix/${imageName}" width="450px" >
+      </div>`;
 
-                        socket.disconnect();
-                    });
-                });
-            });
-
-             /*  $.getJSON('/generate_matrix').done(response => {
-                   console.log(response)
-                   img = `<div class="ui ten wide column">
-                    <img src="static/outputs/confusion_matrix/${response.name}" width="450px" >
-                    </div>`;
-                   $("#images").html(img)
-               }).fail(error => {
-                   console.log(error)
-               })*/
-    </script>
+      $("#images").html(img)
+      $("#btn-display").removeClass("loading")
+      socket.disconnect();
+    });
+  });
+});
+</script>
 {%endblock%}
